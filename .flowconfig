@@ -1,0 +1,26 @@
+[ignore]
+*./test/.*
+<PROJECT_ROOT>/public/.*
+<PROJECT_ROOT>/static/.*
+<PROJECT_ROOT>/migrations/.*
+<PROJECT_ROOT>/logs/.*
+<PROJECT_ROOT>/contracts/.*
+<PROJECT_ROOT>/config/.*
+<PROJECT_ROOT>/dist/.*
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.file_ext=.js
+module.file_ext=.scss
+module.name_mapper.extension='scss' -> 'empty/object'
+module.name_mapper='^utils/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
+module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
+module.name_mapper='^constants/\(.*\)$' -> '<PROJECT_ROOT>/src/constants/\1'
+module.name_mapper='^pages/\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'
+module.name_mapper='^reducers/\(.*\)$' -> '<PROJECT_ROOT>/src/reducers/\1'
+
+[strict]

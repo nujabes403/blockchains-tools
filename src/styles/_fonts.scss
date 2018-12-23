@@ -1,0 +1,8 @@
+@import 'colors.scss';
+
+@mixin font-style($type) {
+  @if $type == 'h1' { font-size: 32px; font-weight: bold; }
+  @else if $type == 'h2' { font-size: 20px; font-weight: bold; }
+  @else if $type == 'button' { font-size: 14px; font-weight: bold; }
+  @else if $type == 'body' { font-size: 14px; font-weight: normal; }
+}
