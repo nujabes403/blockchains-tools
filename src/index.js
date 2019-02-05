@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './App'
+import RLP from 'components/RLP'
+import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
 import store from './store'
 
 import './index.scss'
@@ -15,6 +17,8 @@ export const renderRoutes = (rootComponent) => (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={rootComponent}>
+        <Route path="/rlp" component={RLP} />
+        <Route path="/key" component={PrivateKeyToPublicKey} />
       </Route>
     </Router>
   </Provider>
