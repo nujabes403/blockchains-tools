@@ -7,6 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import App from './App'
 import RLP from 'components/RLP'
 import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
+import BigNumberToHex from 'components/BigNumberToHex'
 import store from './store'
 
 import './index.scss'
@@ -19,6 +20,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/" component={rootComponent}>
         <Route path="/rlp" component={RLP} />
         <Route path="/key" component={PrivateKeyToPublicKey} />
+        <Route path="/bignumber" component={BigNumberToHex} />
       </Route>
     </Router>
   </Provider>

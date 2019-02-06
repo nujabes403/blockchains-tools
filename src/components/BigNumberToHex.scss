@@ -1,0 +1,40 @@
+@import "colors.scss";
+
+.BigNumberToHex {
+  width: 800px;
+}
+
+.BigNumberToHex__label {
+  display: block;
+  font-size: 14px;
+}
+
+.BigNumberToHex__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.BigNumberToHex__bignumber,
+.BigNumberToHex__hex {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.BigNumberToHex__bignumber {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.BigNumberToHex__hex {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
