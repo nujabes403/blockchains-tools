@@ -20,8 +20,11 @@ class App extends Component<Props> {
 
     return (
       <div className="App">
-        <Header />
-        {children}
+        <div className="App__section">
+          {children}
+        </div>
+        <div className="App__menu">
+        </div>
       </div>
     )
   }

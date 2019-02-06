@@ -1,6 +1,18 @@
-.privateKey, .publicKey, .publicAddress {
-  width: 880px;
+@import "colors.scss";
+
+.PrivateKeyToPublicKey__label {
+  display: block;
+  font-size: 14px;
+}
+
+.PrivateKeyToPublicKey__inputWrapper {
   margin: 4px;
+  width: 880px;
+}
+
+.PrivateKeyToPublicKey__privateKey,
+.PrivateKeyToPublicKey__publicKey,
+.PrivateKeyToPublicKey__publicAddress {
   font-size: 12px;
   padding: 10px;
   border: 2px solid #eeeeee;
@@ -8,28 +20,31 @@
   transition: border-color 300ms;
 }
 
-.privateKey {
+.PrivateKeyToPublicKey__privateKey {
   display: block;
+  width: 100%;
   &--changeTarget {
-    border: 2px solid green;
+    border: 2px solid $key-change;
   }
 
   &--removeTarget {
-    border: 2px solid red;
+    border: 2px solid $key-remove;
   }
 }
 
-.publicKey {
+.PrivateKeyToPublicKey__publicKey {
   display: block;
+  width: 100%;
   &--changeTarget {
-    border: 2px solid green;
+    border: 2px solid $key-change;
   }
 }
 
-.publicAddress {
+.PrivateKeyToPublicKey__publicAddress {
   display: block;
-  width: 600px;
+  width: 100%;
+  cursor: default;
   &--changeTarget {
-    border: 2px solid green;
+    border: 2px solid $key-change;
   }
 }

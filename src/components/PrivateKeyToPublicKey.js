@@ -50,7 +50,9 @@ class PrivateKeyToPublicKey extends Component<Props> {
         if (this.$publicKey.value !== pbkeyRaw) this.$publicKey.value = pbkeyRaw
         const pbkey = pbkeyRaw.startsWith('0x') ? pbkeyRaw : '0x' + pbkeyRaw
         this.setState({
-          publicAddress: '0x' + keccak256(pbkey).toString('hex').slice(-40),
+          publicAddress: pbkey !== '0x'
+            ? '0x' + keccak256(pbkey).toString('hex').slice(-40)
+            : ''
         })
       })
   }
@@ -125,27 +127,36 @@ class PrivateKeyToPublicKey extends Component<Props> {
     const { publicAddress, changeTarget, removeTarget } = this.state
     return (
       <div className="PrivateKeyToPublicKey">
-        <input
-          className={cx('privateKey', {
-            'privateKey--changeTarget': changeTarget.privateKey,
-            'privateKey--removeTarget': removeTarget.privateKey,
-          })}
-          ref={($privateKey) => this.$privateKey = $privateKey}
-        />
-        <input
-          className={cx('publicKey', {
-            'publicKey--changeTarget': changeTarget.publicKey
-          })}
-          ref={($publicKey) => this.$publicKey = $publicKey}
-        />
-        <p
-          className={cx('publicAddress', {
-            'publicAddress--changeTarget': changeTarget.publicAddress,
-          })}
-          ref={($publicAddress) => this.$publicAddress = $publicAddress}
-        >
-          public address: {publicAddress}
-        </p>
+        <div className="PrivateKeyToPublicKey__inputWrapper">
+          <label className="PrivateKeyToPublicKey__label">Private key:</label>
+          <input
+            className={cx('PrivateKeyToPublicKey__privateKey', {
+              'PrivateKeyToPublicKey__privateKey--changeTarget': changeTarget.privateKey,
+              'PrivateKeyToPublicKey__privateKey--removeTarget': removeTarget.privateKey,
+            })}
+            ref={($privateKey) => this.$privateKey = $privateKey}
+          />
+        </div>
+        <div className="PrivateKeyToPublicKey__inputWrapper">
+          <label className="PrivateKeyToPublicKey__label">Public key:</label>
+          <input
+            className={cx('PrivateKeyToPublicKey__publicKey', {
+              'PrivateKeyToPublicKey__publicKey--changeTarget': changeTarget.publicKey
+            })}
+            ref={($publicKey) => this.$publicKey = $publicKey}
+          />
+        </div>
+        <div className="PrivateKeyToPublicKey__inputWrapper">
+          <label className="PrivateKeyToPublicKey__label">Public address:</label>
+          <input
+            className={cx('PrivateKeyToPublicKey__publicAddress', {
+              'PrivateKeyToPublicKey__publicAddress--changeTarget': changeTarget.publicAddress,
+            })}
+            ref={($publicAddress) => this.$publicAddress = $publicAddress}
+            value={publicAddress}
+            readOnly
+          />
+        </div>
       </div>
     )
   }
