@@ -1,0 +1,35 @@
+.privateKey, .publicKey, .publicAddress {
+  width: 880px;
+  margin: 4px;
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.privateKey {
+  display: block;
+  &--changeTarget {
+    border: 2px solid green;
+  }
+
+  &--removeTarget {
+    border: 2px solid red;
+  }
+}
+
+.publicKey {
+  display: block;
+  &--changeTarget {
+    border: 2px solid green;
+  }
+}
+
+.publicAddress {
+  display: block;
+  width: 600px;
+  &--changeTarget {
+    border: 2px solid green;
+  }
+}
