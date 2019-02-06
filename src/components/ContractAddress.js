@@ -1,4 +1,10 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
+import { fromEvent, merge, combineLatest } from 'rxjs'
+import { map, filter, tap } from 'rxjs/operators'
+import keccak256 from 'keccak256'
+import BigNumber from 'bignumber.js'
+const rlp = require('rlp')
 
 import './ContractAddress.scss'
 
@@ -7,9 +13,124 @@ type Props = {
 }
 
 class ContractAddress extends Component<Props> {
-  render() {
-    return (
+  state = {
+    changeTarget: {},
+  }
 
+  initInputChangeStreams = () => {
+    // Input Change Streams
+    const senderChange$ = fromEvent(this.$sender, 'input').pipe(
+      map(e => {
+        if (!e.target.value) return ''
+        const sender = e.target.value.startsWith('0x')
+          ? e.target.value
+          : '0x' + e.target.value
+        return sender
+      })
+    )
+
+    const nonceChange$ = fromEvent(this.$nonce, 'input').pipe(
+      map(e => {
+        if (!e.target.value) return ''
+        return Number(e.target.value)
+      })
+    )
+
+    const anyChange$ = combineLatest(
+      senderChange$,
+      nonceChange$,
+    )
+
+    anyChange$.subscribe(([sender, nonce]) => {
+      this.setState({
+        contractAddress: sender !== undefined && nonce !== undefined
+          ? '0x' + keccak256(rlp.encode([sender, nonce])).toString('hex').slice(-40)
+          : ''
+      })
+    })
+  }
+
+  initActiveStreams = () => {
+    const senderFocus$ = fromEvent(this.$sender, 'focus')
+    const senderMouseEnter$ = fromEvent(this.$sender, 'mouseenter')
+    const senderActive$ = merge(senderFocus$, senderMouseEnter$)
+
+    const nonceFocus$ = fromEvent(this.$nonce, 'focus')
+    const nonceMouseEnter$ = fromEvent(this.$nonce, 'mouseenter')
+    const nonceActive$ = merge(nonceFocus$, nonceMouseEnter$)
+
+    merge(senderActive$, nonceActive$)
+      .subscribe(() => {
+        this.setState({
+          changeTarget: {
+            contractAddress: true,
+          },
+        })
+      })
+  }
+
+  initDeactiveStreams = () => {
+    const blur$ = merge(
+      fromEvent(this.$sender, 'blur'),
+      fromEvent(this.$nonce, 'blur')
+    )
+    const mouseleave$ = merge(
+      fromEvent(this.$sender, 'mouseleave'),
+      fromEvent(this.$nonce, 'mouseleave')
+    )
+
+    const deactive$ = merge(blur$, mouseleave$).pipe(
+      filter((e) => document.activeElement !== e.fromElement),
+      tap(() => {
+        this.setState({
+          changeTarget: {},
+        })
+      })
+    )
+
+    deactive$.subscribe()
+  }
+
+  componentDidMount() {
+    this.initInputChangeStreams()
+    this.initActiveStreams()
+    this.initDeactiveStreams()
+  }
+
+  render() {
+    const { changeTarget, contractAddress } = this.state
+    return (
+      <div className="ContractAddress">
+        <div className="ContractAddress__inputWrapper">
+          <label className="ContractAddress__label">Sender address:</label>
+          <input
+            className={cx('ContractAddress__sender', {
+              'ContractAddress__sender--changeTarget': changeTarget.sender,
+            })}
+            ref={($sender) => this.$sender = $sender}
+          />
+        </div>
+        <div className="ContractAddress__inputWrapper">
+          <label className="ContractAddress__label">Nonce:</label>
+          <input
+            className={cx('ContractAddress__nonce', {
+              'ContractAddress__nonce--changeTarget': changeTarget.nonce
+            })}
+            ref={($nonce) => this.$nonce = $nonce}
+          />
+        </div>
+        <div className="ContractAddress__inputWrapper">
+          <label className="ContractAddress__label">Contaract address:</label>
+          <input
+            className={cx('ContractAddress__contractAddress', {
+              'ContractAddress__contractAddress--changeTarget': changeTarget.contractAddress,
+            })}
+            ref={($contractAddress) => this.$contractAddress = $contractAddress}
+            value={contractAddress}
+            readOnly
+          />
+        </div>
+      </div>
     )
   }
 }

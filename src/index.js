@@ -8,6 +8,7 @@ import App from './App'
 import RLP from 'components/RLP'
 import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
 import BigNumberToHex from 'components/BigNumberToHex'
+import ContractAddress from 'components/ContractAddress'
 import store from './store'
 
 import './index.scss'
@@ -21,6 +22,7 @@ export const renderRoutes = (rootComponent) => (
         <Route path="/rlp" component={RLP} />
         <Route path="/key" component={PrivateKeyToPublicKey} />
         <Route path="/bignumber" component={BigNumberToHex} />
+        <Route path="/contractAddress" component={ContractAddress} />
       </Route>
     </Router>
   </Provider>

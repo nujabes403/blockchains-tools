@@ -1,3 +1,43 @@
+@import "colors.scss";
+
 .ContractAddress {
-  
+  width: 800px;
+}
+
+.ContractAddress__label {
+  display: block;
+  font-size: 14px;
+}
+
+.ContractAddress__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.ContractAddress__sender,
+.ContractAddress__nonce,
+.ContractAddress__contractAddress {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.ContractAddress__sender {
+  display: block;
+  width: 100%;
+}
+
+.ContractAddress__nonce {
+  display: block;
+  width: 100%;
+}
+
+.ContractAddress__contractAddress {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
 }
