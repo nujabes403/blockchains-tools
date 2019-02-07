@@ -1,3 +1,38 @@
+@import "colors.scss";
+
 .Keccak256 {
-  
+  width: 800px;
+}
+
+.Keccak256__label {
+  display: block;
+  font-size: 14px;
+}
+
+.Keccak256__inputWrapper {
+  margin: 4px;
+  width: 880px;
+}
+
+.Keccak256__keccakInput,
+.Keccak256__keccakOutput {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.Keccak256__keccakInput {
+  display: block;
+  width: 100%;
+}
+
+.Keccak256__keccakOutput {
+  display: block;
+  width: 100%;
+  cursor: default;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
 }
