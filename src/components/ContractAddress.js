@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js'
 const rlp = require('rlp')
 
 import ArrowDown from 'components/ArrowDown'
+import { putSubscriptions, unsubscribeAll } from 'utils/stream'
 
 import './ContractAddress.scss'
 
@@ -18,6 +19,8 @@ class ContractAddress extends Component<Props> {
   state = {
     changeTarget: {},
   }
+
+  subscriptions = []
 
   initInputChangeStreams = () => {
     // Input Change Streams
@@ -43,13 +46,16 @@ class ContractAddress extends Component<Props> {
       nonceChange$,
     )
 
-    anyChange$.subscribe(([sender, nonce]) => {
-      this.setState({
-        contractAddress: sender !== undefined && nonce !== undefined
-          ? '0x' + keccak256(rlp.encode([sender, nonce])).toString('hex').slice(-40)
-          : ''
+    putSubscriptions(
+      this.subscriptions,
+      anyChange$.subscribe(([sender, nonce]) => {
+        this.setState({
+          contractAddress: sender !== undefined && nonce !== undefined
+            ? '0x' + keccak256(rlp.encode([sender, nonce])).toString('hex').slice(-40)
+            : ''
+        })
       })
-    })
+    )
   }
 
   initActiveStreams = () => {
@@ -61,14 +67,17 @@ class ContractAddress extends Component<Props> {
     const nonceMouseEnter$ = fromEvent(this.$nonce, 'mouseenter')
     const nonceActive$ = merge(nonceFocus$, nonceMouseEnter$)
 
-    merge(senderActive$, nonceActive$)
-      .subscribe(() => {
-        this.setState({
-          changeTarget: {
-            contractAddress: true,
-          },
+    putSubscriptions(
+      this.subscriptions,
+      merge(senderActive$, nonceActive$)
+        .subscribe(() => {
+          this.setState({
+            changeTarget: {
+              contractAddress: true,
+            },
+          })
         })
-      })
+    )
   }
 
   initDeactiveStreams = () => {
@@ -90,13 +99,20 @@ class ContractAddress extends Component<Props> {
       })
     )
 
-    deactive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      deactive$.subscribe()
+    )
   }
 
   componentDidMount() {
     this.initInputChangeStreams()
     this.initActiveStreams()
     this.initDeactiveStreams()
+  }
+
+  componentWillUnmount() {
+    unsubscribeAll(this.subscriptions)
   }
 
   render() {

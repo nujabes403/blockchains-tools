@@ -5,6 +5,7 @@ import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 
 import ArrowDown from 'components/ArrowDown'
+import { putSubscriptions, unsubscribeAll } from 'utils/stream'
 
 import './Keccak256.scss'
 
@@ -12,13 +13,13 @@ type Props = {
 
 }
 
-window.keccak256 = keccak256
-
 class Keccak256 extends Component<Props> {
   state = {
     keccakOutput: '',
     changeTarget: {},
   }
+
+  subscriptions = []
 
   componentDidMount() {
     this.initInputChangeStreams()
@@ -32,12 +33,15 @@ class Keccak256 extends Component<Props> {
         map(e => e.target.value)
       )
 
-    keccakInputChange$.subscribe((input) => {
-      console.log(keccak256(input), 'keccak256(input)', input, typeof input)
-      this.setState({
-        keccakOutput: input && keccak256(input).toString('hex'),
+    putSubscriptions(
+      this.subscriptions,
+      keccakInputChange$.subscribe((input) => {
+        console.log(keccak256(input), 'keccak256(input)', input, typeof input)
+        this.setState({
+          keccakOutput: input && keccak256(input).toString('hex'),
+        })
       })
-    })
+    )
   }
 
   initActiveStreams = () => {
@@ -53,7 +57,10 @@ class Keccak256 extends Component<Props> {
       })
     )
 
-    keccakInputActive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      keccakInputActive$.subscribe()
+    )
   }
 
   initDeactiveStreams = () => {
@@ -69,7 +76,14 @@ class Keccak256 extends Component<Props> {
       })
     )
 
-    deactive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      deactive$.subscribe()
+    )
+  }
+
+  componentWillUnmount() {
+    unsubscribeAll(this.subscriptions)
   }
 
   render() {

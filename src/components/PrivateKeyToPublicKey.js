@@ -7,6 +7,7 @@ import keccak256 from 'keccak256'
 import Input from 'components/Input'
 import ArrowDown from 'components/ArrowDown'
 import ec from 'utils/elliptic'
+import { putSubscriptions, unsubscribeAll } from 'utils/stream'
 
 import './PrivateKeyToPublicKey.scss'
 
@@ -21,6 +22,8 @@ class PrivateKeyToPublicKey extends Component<Props> {
     changeTarget: {},
     removeTarget: {},
   }
+
+  subscriptions = []
 
   initInputChangeStreams = () => {
     // Input Change Streams
@@ -47,15 +50,18 @@ class PrivateKeyToPublicKey extends Component<Props> {
       )
     )
 
-    publicKeyChange$.subscribe(pbkeyRaw => {
-        if (this.$publicKey.value !== pbkeyRaw) this.$publicKey.value = pbkeyRaw
-        const pbkey = pbkeyRaw.startsWith('0x') ? pbkeyRaw : '0x' + pbkeyRaw
-        this.setState({
-          publicAddress: pbkey !== '0x'
-            ? '0x' + keccak256(pbkey).toString('hex').slice(-40)
-            : ''
+    putSubscriptions(
+      this.subscriptions,
+      publicKeyChange$.subscribe(pbkeyRaw => {
+          if (this.$publicKey.value !== pbkeyRaw) this.$publicKey.value = pbkeyRaw
+          const pbkey = pbkeyRaw.startsWith('0x') ? pbkeyRaw : '0x' + pbkeyRaw
+          this.setState({
+            publicAddress: pbkey !== '0x'
+              ? '0x' + keccak256(pbkey).toString('hex').slice(-40)
+              : ''
+          })
         })
-      })
+    )
   }
 
   initActiveStreams = () => {
@@ -87,8 +93,11 @@ class PrivateKeyToPublicKey extends Component<Props> {
       })
     )
 
-    privateKeyActive$.subscribe()
-    publicKeyActive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      privateKeyActive$.subscribe(),
+      publicKeyActive$.subscribe()
+    )
   }
 
   initDeactiveStreams = () => {
@@ -111,7 +120,10 @@ class PrivateKeyToPublicKey extends Component<Props> {
       })
     )
 
-    deactive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      deactive$.subscribe()
+    )
   }
 
   clearPrivateKey = () => {
@@ -122,6 +134,10 @@ class PrivateKeyToPublicKey extends Component<Props> {
     this.initInputChangeStreams()
     this.initActiveStreams()
     this.initDeactiveStreams()
+  }
+
+  componentWillUnmount() {
+    unsubscribeAll(this.subscriptions)
   }
 
   render() {

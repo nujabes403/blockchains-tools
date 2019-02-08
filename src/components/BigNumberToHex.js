@@ -5,6 +5,7 @@ import { map, filter, tap } from 'rxjs/operators'
 import BigNumber from 'bignumber.js'
 
 import Arrow from 'components/Arrow'
+import { putSubscriptions, unsubscribeAll } from 'utils/stream'
 
 import './BigNumberToHex.scss'
 
@@ -17,6 +18,8 @@ class BigNumberToHex extends Component<Props> {
     changeTarget: {},
     removeTarget: {},
   }
+
+  subscriptions = []
 
   initInputChangeStreams = () => {
     // Input Change Streams
@@ -40,13 +43,15 @@ class BigNumberToHex extends Component<Props> {
       })
     )
 
-    bignumberChange$.subscribe((hex) => {
-      this.$hex.value = hex
-    })
-
-    hexChange$.subscribe((decimalBignumber) => {
-      this.$bignumber.value = decimalBignumber
-    })
+    putSubscriptions(
+      this.subscriptions,
+      bignumberChange$.subscribe((hex) => {
+        this.$hex.value = hex
+      }),
+      hexChange$.subscribe((decimalBignumber) => {
+        this.$bignumber.value = decimalBignumber
+      })
+    )
   }
 
   initActiveStreams = () => {
@@ -74,8 +79,11 @@ class BigNumberToHex extends Component<Props> {
       })
     )
 
-    bignumberActive$.subscribe()
-    hexActive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      bignumberActive$.subscribe(),
+      hexActive$.subscribe(),
+    )
   }
 
   initDeactiveStreams = () => {
@@ -97,7 +105,10 @@ class BigNumberToHex extends Component<Props> {
       })
     )
 
-    deactive$.subscribe()
+    putSubscriptions(
+      this.subscriptions,
+      deactive$.subscribe(),
+    )
   }
 
   componentDidMount() {
@@ -106,12 +117,16 @@ class BigNumberToHex extends Component<Props> {
     this.initDeactiveStreams()
   }
 
+  componentWillUnmount() {
+    unsubscribeAll(this.subscriptions)
+  }
+
   render() {
     const { changeTarget } = this.state
     return (
       <div className="BigNumberToHex">
         <div className="BigNumberToHex__inputWrapper">
-          <label className="BigNumberToHex__label">Bignumber:</label>
+          <label className="BigNumberToHex__label">Number:</label>
           <input
             className={cx('BigNumberToHex__bignumber', {
               'BigNumberToHex__bignumber--changeTarget': changeTarget.bignumber,
