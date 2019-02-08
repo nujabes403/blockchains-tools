@@ -9,11 +9,7 @@ type Props = {
 
 const menuItems = [
   {
-    title: 'KECCAK256',
-    link: '/keccak256'
-  },
-  {
-    title: 'BIGNUMBER TO HEX',
+    title: '(BIG)NUMBER TO HEX',
     link: '/bignumber'
   },
   {
@@ -21,20 +17,28 @@ const menuItems = [
     link: '/contractAddress'
   },
   {
+    title: 'KECCAK256',
+    link: '/keccak256'
+  },
+  {
     title: 'PRIVATEKEY TO ADDRESS',
     link: '/key'
   },
   {
-    title: 'RLP',
-    link: '/rlp'
+    title: 'RAW TRANSACTION ENCODER',
+    link: '/rawTransactionEncoder'
   },
   {
     title: 'RAW TRANSACTION DECODER',
     link: '/rawTransactionDecoder'
   },
   {
-    title: 'TRANSACTION SIGNER',
-    link: '/transactionSigner'
+    title: 'RLP',
+    link: '/rlp'
+  },
+  {
+    title: 'UTF8',
+    link: '/utf8'
   },
 ]
 

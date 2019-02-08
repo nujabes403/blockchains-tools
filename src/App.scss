@@ -5,14 +5,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 120px;
 }
 
 .App__section {
   display: inline-block;
   vertical-align: middle;
   width: 75%;
-  padding-top: 72px;
   height: 100%;
   padding-bottom: 76px;
   margin: 0 auto;
@@ -23,4 +22,8 @@
   vertical-align: middle;
   width: 25%;
   position: relative;
+}
+
+.App__sectionDescription {
+  width: 70%;
 }
