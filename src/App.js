@@ -26,11 +26,11 @@ class App extends Component<Props> {
         <Modal />
         <div className="App">
           <Eye pathname={location.pathname} />
-          <SectionDescription
-            pathname={location.pathname}
-            className="App__sectionDescription"
-          />
           <div className="App__section">
+            <SectionDescription
+              pathname={location.pathname}
+              className="App__sectionDescription"
+            />
             {children}
           </div>
           <div className="App__menu">

@@ -1,9 +1,6 @@
 .App {
+  position: relative;
   width: 1176px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   margin: 0 auto;
   padding-top: 40px;
   z-index: 1;
@@ -13,18 +10,18 @@
   display: inline-block;
   vertical-align: middle;
   width: 75%;
-  height: 100%;
-  padding-bottom: 76px;
+  height: 550px;
+  padding-top: 76px;
   margin: 0 auto;
 }
 
 .App__menu {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   width: 25%;
   position: relative;
 }
 
 .App__sectionDescription {
-  width: 70%;
+  width: 100%;
 }

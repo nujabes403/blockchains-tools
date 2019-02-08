@@ -24,9 +24,9 @@ class Eye extends Component<Props> {
 
       const { pathname } = browserHistory.getCurrentLocation()
 
-      const dangerPaths = ['/key']
+      const dangerPaths = ['/key', '/rawTransactionEncoder']
 
-      if (pathname.includes(dangerPaths)) {
+      if (dangerPaths.includes(pathname)) {
         this.$eyeBallLeft.style.borderColor = '#E67C64'
       } else {
         this.$eyeBallLeft.style.borderColor = '#47443c'
@@ -39,10 +39,6 @@ class Eye extends Component<Props> {
         this.$eyeBallLeft.style.width = 50 + 'px'
         this.$eyeBallLeft.style.height = 50 + 'px'
       }
-
-      // this.$eyeBallRight.style.left = x
-      // this.$eyeBallRight.style.top = y
-      // this.$eyeBallRight.style.transform = "translate(-" + x + ",-" + y + ")"
     })
   }
 
@@ -63,16 +59,6 @@ class Eye extends Component<Props> {
             />
           </div>
         </div>
-        {/*
-          <div className="Eye Eye--right">
-            <div className="Eye__eye">
-              <div
-                className="Eye__eyeBall"
-                ref={($eyeBall) => this.$eyeBallRight = $eyeBall}
-              />
-            </div>
-          </div>
-          */}
       </Fragment>
     )
   }
