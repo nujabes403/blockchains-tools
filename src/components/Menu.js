@@ -49,6 +49,7 @@ class Menu extends Component<Props> {
         <header className="Menu__title">BLOCKCHAIN TOOLS</header>
         {menuItems.map(({ title, link }) => (
           <Link
+            key={title}
             to={link}
             className="Menu__item"
           >

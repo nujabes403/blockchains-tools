@@ -3,7 +3,7 @@ import cx from 'classnames'
 import marked from 'marked'
 
 import { openModal } from 'utils/modal'
-import linkToTitle from 'constants/linkToTitle'
+import linkToDescription from 'constants/linkToDescription'
 
 import './SectionDescription.scss'
 
@@ -16,11 +16,11 @@ class SectionDescription extends Component<Props> {
     const { className, pathname } = this.props
     return (
       <div className={cx('SectionDescription', className)}>
-        <header className="SectionDescription__title">{linkToTitle[pathname].title}</header>
+        <header className="SectionDescription__title">{linkToDescription[pathname].title}</header>
         <span
           onClick={() => openModal({
-            title: linkToTitle[pathname].title,
-            content: linkToTitle[pathname].markdown,
+            title: linkToDescription[pathname].title,
+            content: linkToDescription[pathname].markdown,
           })}
           className="SectionDescription__questionMark">
           ?

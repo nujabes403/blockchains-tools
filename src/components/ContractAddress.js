@@ -3,7 +3,6 @@ import cx from 'classnames'
 import { fromEvent, merge, combineLatest } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 import keccak256 from 'keccak256'
-import BigNumber from 'bignumber.js'
 const rlp = require('rlp')
 
 import ArrowDown from 'components/ArrowDown'

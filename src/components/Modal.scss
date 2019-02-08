@@ -37,6 +37,7 @@
   border-radius: 3px;
   width: 720px;
   position: fixed;
+  overflow: scroll;
   z-index: 2000;
   top: 50%;
   left: 50%;
@@ -54,7 +55,7 @@
   font-weight: bold;
   background-color: rgba($black, .1);
   display: block;
-  padding: 16px;
+  padding: 15px 30px;
   font-size: 40px;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
@@ -64,9 +65,11 @@
   font-weight: normal;
   background-color: #F0F0F0;
   display: block;
-  padding: 15px;
-  min-height: 250px;
+  padding: 15px 30px;
+  height: 500px;
+  overflow: scroll;
   font-size: 18px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+
 }

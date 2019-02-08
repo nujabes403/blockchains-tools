@@ -36,7 +36,6 @@ class Keccak256 extends Component<Props> {
     putSubscriptions(
       this.subscriptions,
       keccakInputChange$.subscribe((input) => {
-        console.log(keccak256(input), 'keccak256(input)', input, typeof input)
         this.setState({
           keccakOutput: input && keccak256(input).toString('hex'),
         })

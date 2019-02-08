@@ -11,8 +11,8 @@ const ArrowUp = ({
     'ArrowUp--visible': visible,
   })}
   >
-    <div class="ArrowUp__arrow ArrowUp__arrow--first" />
-    <div class="ArrowUp__arrow ArrowUp__arrow--second" />
+    <div className="ArrowUp__arrow ArrowUp__arrow--first" />
+    <div className="ArrowUp__arrow ArrowUp__arrow--second" />
   </div>
 )
 

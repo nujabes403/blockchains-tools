@@ -47,7 +47,12 @@ class Modal extends Component<Props> {
         <div className="Modal__overlay" onClick={this.closeModal} />
         <div className="Modal__content">
           <header className="Modal__title">{title}</header>
-          <div className="Modal__description">{content}</div>
+          <div
+            className="Modal__description"
+            dangerouslySetInnerHTML={{
+              __html: content,
+            }}
+          />
         </div>
       </div>
     )
