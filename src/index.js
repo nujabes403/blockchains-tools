@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { Provider } from 'react-redux'
-import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './App'
 import RLP from 'components/RLP'
@@ -10,26 +8,27 @@ import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
 import BigNumberToHex from 'components/BigNumberToHex'
 import ContractAddress from 'components/ContractAddress'
 import Keccak256 from 'components/Keccak256'
+import RawTransactionEncoder from 'components/RawTransactionEncoder'
 import RawTransactionDecoder from 'components/RawTransactionDecoder'
-import store from './store'
+import UTF8 from 'components/UTF8'
 
 import './index.scss'
 
-const history = syncHistoryWithStore(browserHistory, store)
+const history = browserHistory
 
 export const renderRoutes = (rootComponent) => (
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={rootComponent}>
-        <Route path="/rlp" component={RLP} />
-        <Route path="/key" component={PrivateKeyToPublicKey} />
-        <Route path="/bignumber" component={BigNumberToHex} />
-        <Route path="/contractAddress" component={ContractAddress} />
-        <Route path="/keccak256" component={Keccak256} />
-        <Route path="/rawTransactionDecoder" component={RawTransactionDecoder} />
-      </Route>
-    </Router>
-  </Provider>
+  <Router history={history}>
+    <Route path="/" component={rootComponent}>
+      <Route path="/rlp" component={RLP} />
+      <Route path="/key" component={PrivateKeyToPublicKey} />
+      <Route path="/bignumber" component={BigNumberToHex} />
+      <Route path="/contractAddress" component={ContractAddress} />
+      <Route path="/keccak256" component={Keccak256} />
+      <Route path="/rawTransactionEncoder" component={RawTransactionEncoder} />
+      <Route path="/rawTransactionDecoder" component={RawTransactionDecoder} />
+      <Route path="/utf8" component={UTF8} />
+    </Route>
+  </Router>
 )
 
 ReactDOM.render(renderRoutes(App), document.getElementById('root'))

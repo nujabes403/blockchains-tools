@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
 
 import Header from 'components/Header'
+import SectionDescription from 'components/SectionDescription'
 import Menu from 'components/Menu'
+import Modal from 'components/Modal'
 
 import './App.scss'
 
@@ -17,17 +18,24 @@ class App extends Component<Props> {
   }
 
   render() {
-    const { children } = this.props
+    const { children, location } = this.props
 
     return (
-      <div className="App">
-        <div className="App__section">
-          {children}
+      <Fragment>
+        <Modal />
+        <div className="App">
+          <SectionDescription
+            pathname={location.pathname}
+            className="App__sectionDescription"
+          />
+          <div className="App__section">
+            {children}
+          </div>
+          <div className="App__menu">
+            <Menu />
+          </div>
         </div>
-        <div className="App__menu">
-          <Menu />
-        </div>
-      </div>
+      </Fragment>
     )
   }
 }
