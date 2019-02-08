@@ -1,7 +1,7 @@
 @import "colors.scss";
 
 .Modal {
-  font-family: 'Lato';
+  font-family: 'Crimson Text';
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -51,6 +51,7 @@
 }
 
 .Modal__title {
+  font-weight: bold;
   background-color: rgba($black, .1);
   display: block;
   padding: 16px;
@@ -60,6 +61,7 @@
 }
 
 .Modal__description {
+  font-weight: normal;
   background-color: #F0F0F0;
   display: block;
   padding: 15px;

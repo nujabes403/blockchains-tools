@@ -4,6 +4,17 @@
 }
 
 @font-face {
+  font-family: 'Crimson Text';
+  font-weight: bold;
+  src: url(/static/fonts/CrimsonText-Bold.ttf);
+}
+@font-face {
+  font-family: 'Crimson Text';
+  font-weight: normal;
+  src: url(/static/fonts/CrimsonText-Regular.ttf);
+}
+
+@font-face {
   font-family: 'Lato';
   src: url(/static/fonts/Lato-Regular.ttf);
 }

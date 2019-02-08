@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 
 import Header from 'components/Header'
+import Eye from 'components/Eye'
 import SectionDescription from 'components/SectionDescription'
 import Menu from 'components/Menu'
 import Modal from 'components/Modal'
@@ -24,6 +25,7 @@ class App extends Component<Props> {
       <Fragment>
         <Modal />
         <div className="App">
+          <Eye pathname={location.pathname} />
           <SectionDescription
             pathname={location.pathname}
             className="App__sectionDescription"
