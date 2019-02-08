@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import { fromEvent, merge } from 'rxjs'
+import { fromEvent, merge, Subject } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 import keccak256 from 'keccak256'
 
@@ -25,11 +25,21 @@ class PrivateKeyToPublicKey extends Component<Props> {
 
   subscriptions = []
 
+  privateKeySubject = new Subject()
+
   initInputChangeStreams = () => {
     // Input Change Streams
-    const privateKeyChange$ = fromEvent(this.$privateKey, 'input').pipe(
+    const privateKeyChange$ = merge(
+      fromEvent(this.$privateKey, 'input').pipe(
         map(e => e.target.value.replace('0x', ''))
-      )
+      ),
+      this.privateKeySubject.pipe(
+        tap((privateKey) => {
+          this.$privateKey.value = privateKey
+        }),
+        map(privateKey => privateKey.replace('0x', '')),
+      ),
+    )
 
     const publicKeyChange$ = merge(
       privateKeyChange$.pipe(
@@ -130,6 +140,11 @@ class PrivateKeyToPublicKey extends Component<Props> {
     this.$privateKey.value = ''
   }
 
+  genPrivateKey = () => {
+    const generatedPrivateKey = '0x' + ec.genKeyPair().getPrivate().toString(16)
+    this.privateKeySubject.next(generatedPrivateKey)
+  }
+
   componentDidMount() {
     this.initInputChangeStreams()
     this.initActiveStreams()
@@ -144,6 +159,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
     const { publicAddress, changeTarget, removeTarget } = this.state
     return (
       <div className="PrivateKeyToPublicKey">
+        <button onClick={this.genPrivateKey}>Generate!</button>
         <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--privateKey">
           <label className="PrivateKeyToPublicKey__label">Private key:</label>
           <input
