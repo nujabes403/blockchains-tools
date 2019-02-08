@@ -12,9 +12,24 @@ import RawTransactionEncoder from 'components/RawTransactionEncoder'
 import RawTransactionDecoder from 'components/RawTransactionDecoder'
 import UTF8 from 'components/UTF8'
 
+// injectLibraries
+import 'utils/injectLibraries'
+
 import './index.scss'
 
 const history = browserHistory
+
+// console
+console.info(`%cYou can use following libraries in this console..
+  - BigNumber: window.BigNumber
+  - Keccak256: window.keccak256
+  - UTF8: window.utf8
+  - RLP: window.rlp
+  - secp256k1: window.secp256k1
+  - eth-lib: window.ethLib
+  If there is no tool you are looking for, please make an issue or PR to following github link.
+  https://github.com/nujabes403/blockchains-tools
+  `, 'background:#73c8a9;color:#fff;font-size:12px;padding:4px;')
 
 export const renderRoutes = (rootComponent) => (
   <Router history={history}>
