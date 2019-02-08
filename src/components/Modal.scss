@@ -1,0 +1,29 @@
+@import "colors.scss";
+
+.Modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
+.Modal__overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba($black, .2);
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.Modal__content {
+  width: 720px;
+  min-height: 300px;
+  position: fixed;
+  z-index: 2000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
