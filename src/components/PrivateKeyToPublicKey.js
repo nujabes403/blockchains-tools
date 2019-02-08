@@ -5,6 +5,7 @@ import { map, filter, tap } from 'rxjs/operators'
 import keccak256 from 'keccak256'
 
 import Input from 'components/Input'
+import ArrowDown from 'components/ArrowDown'
 import ec from 'utils/elliptic'
 
 import './PrivateKeyToPublicKey.scss'
@@ -127,7 +128,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
     const { publicAddress, changeTarget, removeTarget } = this.state
     return (
       <div className="PrivateKeyToPublicKey">
-        <div className="PrivateKeyToPublicKey__inputWrapper">
+        <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--privateKey">
           <label className="PrivateKeyToPublicKey__label">Private key:</label>
           <input
             className={cx('PrivateKeyToPublicKey__privateKey', {
@@ -137,16 +138,18 @@ class PrivateKeyToPublicKey extends Component<Props> {
             ref={($privateKey) => this.$privateKey = $privateKey}
           />
         </div>
-        <div className="PrivateKeyToPublicKey__inputWrapper">
+        <ArrowDown visible={changeTarget.publicKey} />
+        <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--publicKey">
           <label className="PrivateKeyToPublicKey__label">Public key:</label>
-          <input
+          <textarea
             className={cx('PrivateKeyToPublicKey__publicKey', {
               'PrivateKeyToPublicKey__publicKey--changeTarget': changeTarget.publicKey
             })}
             ref={($publicKey) => this.$publicKey = $publicKey}
           />
         </div>
-        <div className="PrivateKeyToPublicKey__inputWrapper">
+        <ArrowDown visible={changeTarget.publicAddress} />
+        <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--publicAddress">
           <label className="PrivateKeyToPublicKey__label">Public address:</label>
           <input
             className={cx('PrivateKeyToPublicKey__publicAddress', {

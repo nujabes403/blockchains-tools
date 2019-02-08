@@ -1,7 +1,8 @@
 @import "colors.scss";
 
 .Keccak256 {
-  width: 800px;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .Keccak256__label {
@@ -11,7 +12,6 @@
 
 .Keccak256__inputWrapper {
   margin: 4px;
-  width: 880px;
 }
 
 .Keccak256__keccakInput,

@@ -1,0 +1,68 @@
+@import "colors.scss";
+
+$ani-speed: 2s;
+$ani-delay: 1s;
+
+.ArrowUp {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 24px;
+  visibility: hidden;
+  &--visible {
+    visibility: visible;
+  }
+}
+
+.ArrowUp__arrow {
+  opacity: 0;
+  position: absolute;
+  left: 48%;
+  bottom: 50%;
+}
+
+.ArrowUp__arrow {
+  &--first {
+    animation: arrow-movement-up $ani-speed ease-in-out infinite;
+  }
+
+  &--second {
+    animation: arrow-movement-up $ani-speed $ani-delay ease-in-out infinite;
+  }
+}
+
+.ArrowUp__arrow:before,
+.ArrowUp__arrow:after {
+  background: $summer-green;
+  content: '';
+  display: block;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+}
+
+.ArrowUp__arrow:before {
+  transform: rotate(-45deg) translateX(-30%);
+  transform-origin: top left;
+}
+
+.ArrowUp__arrow:after {
+  transform: rotate(45deg) translateX(30%);
+  transform-origin: top right;
+}
+
+// Animation
+@keyframes arrow-movement-up {
+  0% {
+    opacity: 0;
+    bottom: 10%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

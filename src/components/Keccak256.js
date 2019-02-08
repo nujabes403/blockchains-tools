@@ -4,6 +4,8 @@ import keccak256 from 'keccak256'
 import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 
+import ArrowDown from 'components/ArrowDown'
+
 import './Keccak256.scss'
 
 type Props = {
@@ -81,6 +83,7 @@ class Keccak256 extends Component<Props> {
             ref={($keccakInput) => this.$keccakInput = $keccakInput}
           />
         </div>
+        <ArrowDown visible={changeTarget.keccakOutput} />
         <div className="Keccak256__inputWrapper">
           <label className="Keccak256__label">Output:</label>
           <input

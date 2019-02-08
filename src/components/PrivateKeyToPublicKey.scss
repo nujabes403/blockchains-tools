@@ -1,5 +1,10 @@
 @import "colors.scss";
 
+.PrivateKeyToPublicKey {
+  width: 500px;
+  margin: 0 auto;
+}
+
 .PrivateKeyToPublicKey__label {
   display: block;
   font-size: 14px;
@@ -7,7 +12,6 @@
 
 .PrivateKeyToPublicKey__inputWrapper {
   margin: 4px;
-  width: 880px;
 }
 
 .PrivateKeyToPublicKey__privateKey,
@@ -46,5 +50,18 @@
   cursor: default;
   &--changeTarget {
     border: 2px solid $key-change;
+  }
+}
+
+.PrivateKeyToPublicKey__arrow {
+  transition: opacity 300ms;
+  opacity: 0;
+  width: 10px;
+  height: 10px;
+  display: block;
+  margin: 10px auto;
+
+  &--visible {
+    opacity: 1;
   }
 }

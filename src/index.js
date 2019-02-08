@@ -10,6 +10,7 @@ import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
 import BigNumberToHex from 'components/BigNumberToHex'
 import ContractAddress from 'components/ContractAddress'
 import Keccak256 from 'components/Keccak256'
+import RawTransactionDecoder from 'components/RawTransactionDecoder'
 import store from './store'
 
 import './index.scss'
@@ -25,6 +26,7 @@ export const renderRoutes = (rootComponent) => (
         <Route path="/bignumber" component={BigNumberToHex} />
         <Route path="/contractAddress" component={ContractAddress} />
         <Route path="/keccak256" component={Keccak256} />
+        <Route path="/rawTransactionDecoder" component={RawTransactionDecoder} />
       </Route>
     </Router>
   </Provider>

@@ -1,13 +1,26 @@
 .App {
-  min-width: 1440px;
-  min-height: 100vh;
-  position: relative;
+  width: 1176px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
 .App__section {
-  max-width: 1440px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 75%;
   padding-top: 72px;
   height: 100%;
   padding-bottom: 76px;
   margin: 0 auto;
+}
+
+.App__menu {
+  display: inline-block;
+  vertical-align: middle;
+  width: 25%;
+  position: relative;
 }

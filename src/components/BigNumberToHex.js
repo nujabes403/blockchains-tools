@@ -4,6 +4,8 @@ import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 import BigNumber from 'bignumber.js'
 
+import Arrow from 'components/Arrow'
+
 import './BigNumberToHex.scss'
 
 type Props = {
@@ -117,6 +119,10 @@ class BigNumberToHex extends Component<Props> {
             ref={($bignumber) => this.$bignumber = $bignumber}
           />
         </div>
+        <Arrow
+          up={changeTarget.bignumber}
+          down={changeTarget.hex}
+        />
         <div className="BigNumberToHex__inputWrapper">
           <label className="BigNumberToHex__label">Hex:</label>
           <input

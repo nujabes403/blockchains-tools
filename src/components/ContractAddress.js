@@ -6,6 +6,8 @@ import keccak256 from 'keccak256'
 import BigNumber from 'bignumber.js'
 const rlp = require('rlp')
 
+import ArrowDown from 'components/ArrowDown'
+
 import './ContractAddress.scss'
 
 type Props = {
@@ -104,21 +106,18 @@ class ContractAddress extends Component<Props> {
         <div className="ContractAddress__inputWrapper">
           <label className="ContractAddress__label">Sender address:</label>
           <input
-            className={cx('ContractAddress__sender', {
-              'ContractAddress__sender--changeTarget': changeTarget.sender,
-            })}
+            className={cx('ContractAddress__sender')}
             ref={($sender) => this.$sender = $sender}
           />
         </div>
         <div className="ContractAddress__inputWrapper">
           <label className="ContractAddress__label">Nonce:</label>
           <input
-            className={cx('ContractAddress__nonce', {
-              'ContractAddress__nonce--changeTarget': changeTarget.nonce
-            })}
+            className={cx('ContractAddress__nonce')}
             ref={($nonce) => this.$nonce = $nonce}
           />
         </div>
+        <ArrowDown visible={changeTarget.contractAddress} />
         <div className="ContractAddress__inputWrapper">
           <label className="ContractAddress__label">Contaract address:</label>
           <input

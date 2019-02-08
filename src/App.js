@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import Header from 'components/Header'
+import Menu from 'components/Menu'
 
 import './App.scss'
 
@@ -24,6 +25,7 @@ class App extends Component<Props> {
           {children}
         </div>
         <div className="App__menu">
+          <Menu />
         </div>
       </div>
     )
