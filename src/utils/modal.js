@@ -15,6 +15,3 @@ export const closeModal = () => {
     content: '',
   })
 }
-
-window.openModal = openModal
-window.closeModal = closeModal
