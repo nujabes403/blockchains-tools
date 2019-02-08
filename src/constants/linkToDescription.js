@@ -1,7 +1,12 @@
-import BigNumberToHexMarkdown from 'templates/BigNumberToHex.md'
 import marked from 'marked'
 
-const linkToTitle = {
+import BigNumberToHexMarkdown from 'templates/BigNumberToHex.md'
+import ContractAddressMarkdown from 'templates/ContractAddress.md'
+import Keccak256Markdown from 'templates/Keccak256.md'
+import PrivateKeyToAddressMarkdown from 'templates/PrivateKeyToAddress.md'
+import UTF8Markdown from 'templates/UTF8.md'
+
+const linkToDescription = {
   '/': {
     title: 'Welcome to Blockchain Tools!',
     markdown: '',
@@ -12,7 +17,7 @@ const linkToTitle = {
   },
   '/key': {
     title: 'PRIVATE KEY TO ADDRESS',
-    markdown: '',
+    markdown: PrivateKeyToAddressMarkdown,
   },
   '/bignumber': {
     title: 'NUMBER TO HEX',
@@ -20,11 +25,11 @@ const linkToTitle = {
   },
   '/contractAddress': {
     title: 'CONTRACT ADDRESS',
-    markdown: '',
+    markdown: ContractAddressMarkdown,
   },
   '/keccak256': {
     title: 'KECCAK256',
-    markdown: '',
+    markdown: Keccak256Markdown,
   },
   '/rawTransactionEncoder': {
     title: 'RAW TRANSACTION ENCODER',
@@ -36,8 +41,8 @@ const linkToTitle = {
   },
   '/utf8': {
     title: 'UTF8',
-    markdown: '',
+    markdown: UTF8Markdown,
   },
 }
 
-export default linkToTitle
+export default linkToDescription
