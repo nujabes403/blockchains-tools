@@ -2,8 +2,8 @@
 
 .Menu {
   font-family: 'Days One';
-  background-color: $summer-green;
   width: 280px;
+  min-height: 500px;
   transform: perspective(1200px);
   transform-style: preserve-3d;
   -webkit-transform: perspective(1200px) rotateY(-40deg) !important;
@@ -13,6 +13,31 @@
   -moz-transform-origin: -10% 25%;
   -ms-transform-origin: -10% 25%;
   -o-transform-origin: -10% 25%;
+  transition: background-color 300ms;
+
+  &--GENERAL {
+    background-color: $label-general;
+    .Menu__item:hover {
+      background-color: #61c19e;
+      text-indent: 18px;
+    }
+  }
+
+  &--ETH {
+    background-color: $label-eth;
+    .Menu__item:hover {
+      background-color: #737474;
+      text-indent: 18px;
+    }
+  }
+
+  &--EOS {
+    background-color: $label-eos;
+    .Menu__item:hover {
+      background-color: #3570d8;
+      text-indent: 18px;
+    }
+  }
 }
 
 .Menu__title {

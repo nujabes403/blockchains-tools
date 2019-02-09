@@ -1,0 +1,38 @@
+@import "colors.scss";
+
+.BookLabel {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  display: block;
+  background-color: #5993c3;
+  height: 40px;
+  width: 100px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all .3s ease;
+  text-indent: -15px;
+  opacity: .8;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 20px 0;
+    border-color: transparent #ffffff transparent transparent;
+    transition: transform .3s ease;
+  }
+
+  &--active, &:hover {
+    opacity: 1;
+  }
+}
