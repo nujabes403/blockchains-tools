@@ -1,0 +1,10 @@
+@import "colors.scss";
+
+.Introduction {
+  font-family: 'Crimson Text';
+  padding: 10px;
+  margin-top: 20px;
+  border-left: 5px solid $label-general;
+  font-size: 20px;
+  text-align: left;
+}

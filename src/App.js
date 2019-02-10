@@ -26,6 +26,7 @@ class App extends Component<Props> {
         <div className="App">
           <div className="App__section">
             <SectionDescription
+              hasModal={location.pathname !== '/'}
               pathname={location.pathname}
               className="App__sectionDescription"
             />

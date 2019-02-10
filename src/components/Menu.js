@@ -12,8 +12,8 @@ type Props = {
 
 const menuItems = {
   'GENERAL': [
-    { title: '(BIG)NUMBER TO HEX', link: '/bignumber' },
     { title: 'KECCAK256', link: '/keccak256' },
+    { title: 'NUMBER TO HEX', link: '/bignumber' },
     { title: 'RLP', link: '/rlp' },
     { title: 'UTF8', link: '/utf8' },
   ],

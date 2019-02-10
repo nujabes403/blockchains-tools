@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import App from './App'
+import Introduction from 'components/Introduction'
 import RLP from 'components/RLP'
 import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
 import BigNumberToHex from 'components/BigNumberToHex'
@@ -34,6 +35,7 @@ console.info(`%cYou can use following libraries in this console..
 export const renderRoutes = (rootComponent) => (
   <Router history={history}>
     <Route path="/" component={rootComponent}>
+      <IndexRoute component={Introduction} />
       <Route path="/rlp" component={RLP} />
       <Route path="/key" component={PrivateKeyToPublicKey} />
       <Route path="/bignumber" component={BigNumberToHex} />
