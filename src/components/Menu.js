@@ -3,33 +3,13 @@ import { Link } from 'react-router'
 import cx from 'classnames'
 
 import BookLabel from 'components/BookLabel'
+import { menuItems, bookLabels } from 'constants/menu'
 
 import './Menu.scss'
 
 type Props = {
 
 }
-
-const menuItems = {
-  'GENERAL': [
-    { title: 'KECCAK256', link: '/keccak256' },
-    { title: 'NUMBER TO HEX', link: '/bignumber' },
-    { title: 'RLP', link: '/rlp' },
-    { title: 'UTF8', link: '/utf8' },
-  ],
-  'ETH': [
-    { title: 'KECCAK256', link: '/keccak256' },
-    { title: 'CONTRACT ADDRESS', link: '/contractAddress' },
-    { title: 'PRIVATEKEY TO ADDRESS', link: '/key' },
-    { title: 'RAW TRANSACTION ENCODER', link: '/rawTransactionEncoder' },
-    { title: 'RAW TRANSACTION DECODER', link: '/rawTransactionDecoder' },
-  ],
-  'EOS': [
-    {}
-  ]
-}
-
-const bookLabels = ['GENERAL', 'ETH', 'EOS']
 
 class Menu extends Component<Props> {
   state = {
@@ -44,9 +24,10 @@ class Menu extends Component<Props> {
 
   render() {
     const { activeBookLabel } = this.state
+    const { className } = this.props
     return (
       <div
-        className={cx('Menu', {
+        className={cx('Menu', className, {
           [`Menu--${activeBookLabel}`]: true,
         })}
       >

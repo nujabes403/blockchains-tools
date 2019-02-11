@@ -1,6 +1,10 @@
 @import "colors.scss";
+@import "mixins.scss";
 
 .PrivateKeyToPublicKey {
+  @include mobile {
+    width: 100%
+  }
   width: 500px;
   margin: 0 auto;
 }
@@ -39,6 +43,7 @@
 .PrivateKeyToPublicKey__publicKey {
   display: block;
   width: 100%;
+  height: 70px;
   &--changeTarget {
     border: 2px solid $key-change;
   }

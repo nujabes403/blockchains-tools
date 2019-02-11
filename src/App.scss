@@ -1,34 +1,56 @@
+@import "mixins.scss";
+@import "colors.scss";
+
 .App {
   position: relative;
-  width: 1176px;
   margin: 0 auto;
   padding-top: 40px;
   z-index: 1;
+  @include desktop {
+    width: 1176px;
+  }
 }
 
 .App__section {
-  display: inline-block;
-  vertical-align: middle;
-  width: 75%;
-  height: 550px;
-  padding-top: 76px;
-  margin: 0 auto;
-  transform: perspective(1200px);
-  transform-style: preserve-3d;
-  -webkit-transform: perspective(1200px) rotateY(5deg) !important;
-  -moz-transform: perspective(1200px) rotateY(5deg) !important;
-  -ms-transform: perspective(1200px) rotateY(5deg) !important;
-  -o-transform: perspective(1200px) rotateY(5deg) !important;
-  -moz-transform-origin: -10% 25%;
-  -ms-transform-origin: -10% 25%;
-  -o-transform-origin: -10% 25%;
+  @include mobile {
+    display: block;
+    width: 100%;
+    padding: 50px 20px;
+  }
+
+  @include desktop {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    padding-top: 76px;
+    width: 75%;
+    height: 550px;
+    transform: perspective(1200px);
+    transform-style: preserve-3d;
+    -webkit-transform: perspective(1200px) rotateY(5deg) !important;
+    -moz-transform: perspective(1200px) rotateY(5deg) !important;
+    -ms-transform: perspective(1200px) rotateY(5deg) !important;
+    -o-transform: perspective(1200px) rotateY(5deg) !important;
+    -moz-transform-origin: -10% 25%;
+    -ms-transform-origin: -10% 25%;
+    -o-transform-origin: -10% 25%;
+  }
 }
 
 .App__menu {
-  display: inline-block;
-  vertical-align: bottom;
-  width: 25%;
-  position: relative;
+  @include mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+  }
+  @include desktop {
+    vertical-align: bottom;
+    position: relative;
+    display: inline-block;
+    width: 25%;
+  }
 }
 
 .App__sectionDescription {

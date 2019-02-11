@@ -1,1 +1,46 @@
-@import "colors.scss";
+$mobile-small: 320px;
+$mobile-medium: 414px;
+$mobile-large: 720px;
+$desktop: 1024px;
+
+@mixin mobile-small() {
+  @media screen and (min-width: $mobile-small) and (max-width: $mobile-medium - 1) {
+    @content;
+  }
+}
+
+@mixin mobile-medium() {
+  @media screen and (min-width: $mobile-medium) and (max-width: $mobile-large - 1) {
+    @content;
+  }
+}
+
+@mixin mobile-large() {
+  @media screen and (min-width: $mobile-large) and (max-width: $desktop - 1) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (min-width: $mobile-small) and (max-width: $desktop - 1) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
+}
+
+.hide-mobile {
+  @include mobile {
+    display: none;
+  }
+}
+
+.hide-desktop {
+  @include desktop {
+    display: none;
+  }
+}

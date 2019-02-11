@@ -1,0 +1,64 @@
+@import "colors.scss";
+
+.MobileMenu {
+  transition: background-color 200ms;
+  &--active {
+    height: 100%;
+    background-color: rgba($black, .6);
+  }
+}
+
+.MobileMenu__bookLabel {
+  color: $white;
+  font-family: 'Days One';
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+  display: block;
+  padding: 18px 6px;
+  border-top: 1px dashed rgba($white, .3);
+  transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+  &--GENERAL {
+    background-color: $label-general;
+  }
+
+  &--ETH {
+    background-color: $label-eth;
+  }
+
+  &--EOS {
+    background-color: $label-eos;
+  }
+}
+
+.MobileMenu__itemList {
+
+}
+
+.MobileMenu__item {
+  font-size: 12px;
+  color: $white;
+  display: block;
+  padding: 18px 6px;
+  border-top: 1px dashed rgba($white, .3);
+  transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  cursor: pointer;
+
+  &--GENERAL {
+    background-color: $label-general;
+  }
+
+  &--ETH {
+    background-color: $label-eth;
+  }
+
+  &--EOS {
+    background-color: $label-eos;
+  }
+}
+
+.MobileMenu__hamburger {
+
+}

@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import Header from 'components/Header'
 import SectionDescription from 'components/SectionDescription'
 import Menu from 'components/Menu'
+import MobileMenu from 'components/MobileMenu'
 import Modal from 'components/Modal'
 
 import './App.scss'
@@ -32,9 +33,8 @@ class App extends Component<Props> {
             />
             {children}
           </div>
-          <div className="App__menu">
-            <Menu />
-          </div>
+          <MobileMenu className="App__menu hide-desktop" />
+          <Menu className="App__menu hide-mobile" />
         </div>
       </Fragment>
     )

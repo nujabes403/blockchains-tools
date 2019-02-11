@@ -1,6 +1,10 @@
 @import "colors.scss";
+@import "mixins.scss";
 
 .Modal {
+  @include mobile {
+    width: 100%;
+  }
   font-family: 'Crimson Text';
   position: fixed;
   width: 100vw;
@@ -33,6 +37,9 @@
 }
 
 .Modal__content {
+  @include mobile {
+    width: 95%;
+  }
   background-color: $white;
   border-radius: 3px;
   width: 720px;
@@ -52,6 +59,9 @@
 }
 
 .Modal__title {
+  @include mobile {
+    font-size: 20px;
+  }
   font-weight: bold;
   background-color: rgba($black, .1);
   display: block;
@@ -62,6 +72,9 @@
 }
 
 .Modal__description {
+  @include mobile {
+    font-size: 14px;
+  }
   font-weight: normal;
   background-color: #F0F0F0;
   display: block;

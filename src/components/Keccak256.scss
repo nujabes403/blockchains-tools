@@ -1,6 +1,10 @@
 @import "colors.scss";
+@import "mixins.scss";
 
 .Keccak256 {
+  @include mobile {
+    width: 100%;
+  }
   width: 500px;
   margin: 0 auto;
 }
