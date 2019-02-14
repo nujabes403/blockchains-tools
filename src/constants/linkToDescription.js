@@ -6,6 +6,7 @@ import Keccak256Markdown from 'templates/Keccak256.md'
 import PrivateKeyToAddressMarkdown from 'templates/PrivateKeyToAddress.md'
 import UTF8Markdown from 'templates/UTF8.md'
 import Base58Markdown from 'templates/Base58.md'
+import Ed25519Markdown from 'templates/Ed25519.md'
 
 const linkToDescription = {
   '/': {
@@ -47,6 +48,10 @@ const linkToDescription = {
   '/base58': {
     title: 'BASE58',
     markdown: Base58Markdown,
+  },
+  '/ed25519': {
+    title: 'ED25519',
+    markdown: Ed25519Markdown,
   },
 }
 

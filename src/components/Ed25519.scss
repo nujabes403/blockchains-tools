@@ -1,0 +1,42 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.Ed25519 {
+  @include mobile {
+    width: 100%;
+  }
+  width: 500px;
+  margin: 0 auto;
+}
+
+.Ed25519__label {
+  display: block;
+  font-size: 14px;
+}
+
+.Ed25519__inputWrapper {
+  margin: 4px;
+}
+
+.Ed25519__privateKey,
+.Ed25519__publicKey {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.Ed25519__privateKey {
+  display: block;
+  width: 100%;
+}
+
+.Ed25519__publicKey {
+  display: block;
+  width: 100%;
+  cursor: default;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}

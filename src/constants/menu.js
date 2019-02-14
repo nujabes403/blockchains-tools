@@ -5,6 +5,7 @@ export const menuItems = {
     { title: 'RLP', link: '/rlp' },
     { title: 'UTF8', link: '/utf8' },
     { title: 'BASE58', link: '/base58' },
+    { title: 'ED25519', link: '/ed25519' },
   ],
   'ETH': [
     { title: 'KECCAK256', link: '/keccak256' },

@@ -5,6 +5,7 @@ import { toHex, fromHex } from 'utils/utf8'
 const rlp = require('rlp')
 const ethLib = require('eth-lib')
 const bs58 = require('bs58')
+const nacl = require('tweetnacl')
 
 window.BigNumber = BigNumber
 
@@ -22,3 +23,5 @@ window.secp256k1 = secp256k1
 window.ethLib = ethLib
 
 window.bs58 = bs58
+
+window.nacl = nacl

@@ -13,6 +13,7 @@ import RawTransactionEncoder from 'components/RawTransactionEncoder'
 import RawTransactionDecoder from 'components/RawTransactionDecoder'
 import UTF8 from 'components/UTF8'
 import Base58 from 'components/Base58'
+import Ed25519 from 'components/Ed25519'
 
 // injectLibraries
 import 'utils/injectLibraries'
@@ -30,6 +31,7 @@ console.info(`%cYou can use following libraries in this console..
   - secp256k1: window.secp256k1
   - eth-lib: window.ethLib
   - base58: window.bs58
+  - ed25519: window.nacl
   If there is no tool you are looking for, please make an issue or PR to following github link.
   https://github.com/nujabes403/blockchains-tools
   `, 'background:#73c8a9;color:#fff;font-size:12px;padding:4px;')
@@ -47,6 +49,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/rawTransactionDecoder" component={RawTransactionDecoder} />
       <Route path="/utf8" component={UTF8} />
       <Route path="/base58" component={Base58} />
+      <Route path="/ed25519" component={Ed25519} />
     </Route>
   </Router>
 )
