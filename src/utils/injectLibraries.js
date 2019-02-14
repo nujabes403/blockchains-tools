@@ -4,6 +4,7 @@ import secp256k1 from 'utils/elliptic'
 import { toHex, fromHex } from 'utils/utf8'
 const rlp = require('rlp')
 const ethLib = require('eth-lib')
+const bs58 = require('bs58')
 
 window.BigNumber = BigNumber
 
@@ -19,3 +20,5 @@ window.rlp = rlp
 window.secp256k1 = secp256k1
 
 window.ethLib = ethLib
+
+window.bs58 = bs58

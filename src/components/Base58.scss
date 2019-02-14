@@ -1,0 +1,45 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.Base58 {
+  @include mobile {
+    width: 100%;
+  }
+  width: 700px;
+  margin: 0 auto;
+}
+
+.Base58__label {
+  display: block;
+  font-size: 14px;
+}
+
+.Base58__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.Base58__decoded,
+.Base58__encoded {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.Base58__decoded {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.Base58__encoded {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}

@@ -5,6 +5,7 @@ import ContractAddressMarkdown from 'templates/ContractAddress.md'
 import Keccak256Markdown from 'templates/Keccak256.md'
 import PrivateKeyToAddressMarkdown from 'templates/PrivateKeyToAddress.md'
 import UTF8Markdown from 'templates/UTF8.md'
+import Base58Markdown from 'templates/Base58.md'
 
 const linkToDescription = {
   '/': {
@@ -42,6 +43,10 @@ const linkToDescription = {
   '/utf8': {
     title: 'UTF8',
     markdown: UTF8Markdown,
+  },
+  '/base58': {
+    title: 'BASE58',
+    markdown: Base58Markdown,
   },
 }
 
