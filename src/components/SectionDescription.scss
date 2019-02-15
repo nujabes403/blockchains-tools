@@ -34,6 +34,7 @@
     font-size: 28px;
     position: static;
     margin-left: 30px;
+    width: 40px;
   }
   @include desktop {
     top: 50%;
@@ -41,8 +42,8 @@
     position: absolute;
     right: 70px;
     font-size: 40px;
+    width: 50px;
   }
-  width: 50px;
   display: inline-block;
   vertical-align: middle;
   color: rgba($black, .3);
