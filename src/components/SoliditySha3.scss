@@ -1,0 +1,61 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.SoliditySha3 {
+  @include mobile {
+    width: 100%;
+  }
+  width: 500px;
+  margin: 0 auto;
+}
+
+.SoliditySha3__typeLabel {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.SoliditySha3__label {
+  margin: 6px 0;
+  display: block;
+  font-size: 14px;
+}
+
+.SoliditySha3__inputWrapper {
+  margin: 4px;
+}
+
+.SoliditySha3__soliditySha3Input,
+.SoliditySha3__soliditySha3Output {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.SoliditySha3__typeSelect {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.SoliditySha3__soliditySha3Input {
+  display: block;
+  width: 100%;
+}
+
+.SoliditySha3__soliditySha3Output {
+  display: block;
+  width: 100%;
+  cursor: default;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.SoliditySha3__errorMessage {
+  text-align: left;
+  margin: 4px;
+  font-size: 8px;
+  color: $key-remove;
+}

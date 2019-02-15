@@ -7,6 +7,8 @@ import PrivateKeyToAddressMarkdown from 'templates/PrivateKeyToAddress.md'
 import UTF8Markdown from 'templates/UTF8.md'
 import Base58Markdown from 'templates/Base58.md'
 import Ed25519Markdown from 'templates/Ed25519.md'
+import ByteArrayToHexMarkdown from 'templates/ByteArrayToHex.md'
+import SoliditySha3Markdown from 'templates/SoliditySha3.md'
 
 const linkToDescription = {
   '/': {
@@ -52,6 +54,14 @@ const linkToDescription = {
   '/ed25519': {
     title: 'ED25519',
     markdown: Ed25519Markdown,
+  },
+  '/byteArrayToHex': {
+    title: 'BYTE ARRAY TO HEX',
+    markdown: ByteArrayToHexMarkdown,
+  },
+  '/soliditySha3': {
+    title: 'SOLIDITY SHA3',
+    markdown: SoliditySha3Markdown,
   },
 }
 

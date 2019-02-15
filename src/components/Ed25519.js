@@ -46,7 +46,12 @@ class Ed25519 extends Component<Props> {
         try {
           const publicKey = '0x' +
           [...nacl.sign.keyPair.fromSecretKey(input).publicKey]
-            .map(num => num.toString(16))
+            .map(num => {
+              const hexNum = num.toString(16)
+              return hexNum.length === 2
+                ? hexNum
+                : '0' + hexNum
+            })
             .join('')
           this.setState({
             publicKey: publicKey,

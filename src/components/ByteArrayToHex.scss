@@ -1,0 +1,45 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.ByteArrayToHex {
+  @include mobile {
+    width: 100%;
+  }
+  width: 700px;
+  margin: 0 auto;
+}
+
+.ByteArrayToHex__label {
+  display: block;
+  font-size: 14px;
+}
+
+.ByteArrayToHex__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.ByteArrayToHex__byteArray,
+.ByteArrayToHex__hex {
+  font-size: 12px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.ByteArrayToHex__byteArray {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.ByteArrayToHex__hex {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}

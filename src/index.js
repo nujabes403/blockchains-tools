@@ -14,6 +14,8 @@ import RawTransactionDecoder from 'components/RawTransactionDecoder'
 import UTF8 from 'components/UTF8'
 import Base58 from 'components/Base58'
 import Ed25519 from 'components/Ed25519'
+import ByteArrayToHex from 'components/ByteArrayToHex'
+import SoliditySha3 from 'components/SoliditySha3'
 
 // injectLibraries
 import 'utils/injectLibraries'
@@ -50,6 +52,8 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/utf8" component={UTF8} />
       <Route path="/base58" component={Base58} />
       <Route path="/ed25519" component={Ed25519} />
+      <Route path="/byteArrayToHex" component={ByteArrayToHex} />
+      <Route path="/soliditySha3" component={SoliditySha3} />
     </Route>
   </Router>
 )
