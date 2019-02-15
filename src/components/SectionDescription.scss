@@ -33,8 +33,6 @@
   @include mobile {
     font-size: 28px;
     position: static;
-    display: inline-block;
-    vertical-align: middle;
     margin-left: 30px;
   }
   @include desktop {
@@ -44,10 +42,13 @@
     right: 70px;
     font-size: 40px;
   }
-  font-family: 'Days One';
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
   color: rgba($black, .3);
   padding: 0;
   cursor: pointer;
+  z-index: 9;
 
   &:hover {
     color: rgba($black, .6);

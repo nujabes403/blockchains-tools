@@ -18,14 +18,17 @@ class SectionDescription extends Component<Props> {
       <div className={cx('SectionDescription', className)}>
         <header className="SectionDescription__title">{linkToDescription[pathname].title}</header>
         {hasModal && (
-          <span
-            onClick={() => openModal({
-              title: linkToDescription[pathname].title,
-              content: linkToDescription[pathname].markdown,
-            })}
-            className="SectionDescription__questionMark">
-            ?
-          </span>
+          <img
+            src="/static/images/question.png"
+            onClick={() => {
+              new Audio('/static/sound/question.wav').play() // :D
+              openModal({
+                title: linkToDescription[pathname].title,
+                content: linkToDescription[pathname].markdown,
+              })
+            }}
+            className="SectionDescription__questionMark"
+          />
         )}
       </div>
     )
