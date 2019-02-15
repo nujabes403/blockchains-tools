@@ -32,7 +32,7 @@
     transition: transform .3s ease;
   }
 
-  &--active, &:hover, &:focus {
+  &--active, &:hover {
     opacity: 1;
   }
 }

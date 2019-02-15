@@ -11,6 +11,9 @@ type Props = {
 
 }
 
+const audio = new Audio('/static/sound/question.wav') // :D
+audio.volume = 0.1
+
 class SectionDescription extends Component<Props> {
   render() {
     const { className, pathname, hasModal } = this.props
@@ -21,7 +24,7 @@ class SectionDescription extends Component<Props> {
           <img
             src="/static/images/question.png"
             onClick={() => {
-              new Audio('/static/sound/question.wav').play() // :D
+              audio.play()
               openModal({
                 title: linkToDescription[pathname].title,
                 content: linkToDescription[pathname].markdown,

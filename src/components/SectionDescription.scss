@@ -51,7 +51,7 @@
   cursor: pointer;
   z-index: 9;
 
-  &:hover, &:focus {
+  &:hover {
     color: rgba($black, .6);
   }
 }

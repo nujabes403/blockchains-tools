@@ -75,7 +75,9 @@
 .Modal__description {
   @include mobile {
     font-size: 14px;
+    height: 300px;
   }
+  word-break: break-all;
   font-weight: normal;
   background-color: #F0F0F0;
   display: block;

@@ -27,10 +27,6 @@ html {
 }
 
 body {
-  @include mobile {
-    // For solving iphone :hover touch event problem.
-    cursor: pointer;
-  }
   height: 100%;
   margin: 0;
   padding: 0;
