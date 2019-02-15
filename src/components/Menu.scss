@@ -17,7 +17,7 @@
 
   &--GENERAL {
     background-color: $label-general;
-    .Menu__item:hover {
+    .Menu__item:hover, .Menu__item:focus {
       background-color: #61c19e;
       text-indent: 18px;
     }
@@ -25,7 +25,7 @@
 
   &--ETH {
     background-color: $label-eth;
-    .Menu__item:hover {
+    .Menu__item:hover, .Menu__item:focus {
       background-color: #737474;
       text-indent: 18px;
     }
@@ -33,7 +33,7 @@
 
   &--EOS {
     background-color: $label-eos;
-    .Menu__item:hover {
+    .Menu__item:hover, .Menu__item:focus {
       background-color: #3570d8;
       text-indent: 18px;
     }
@@ -58,7 +58,7 @@
   transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
   cursor: pointer;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #61c19e;
     text-indent: 18px;
   }
