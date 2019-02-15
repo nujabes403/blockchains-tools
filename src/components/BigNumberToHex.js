@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import { fromEvent, merge } from 'rxjs'
-import { map, filter, tap } from 'rxjs/operators'
+import { fromEvent, merge, Subject, empty } from 'rxjs'
+import { map, filter, tap, takeUntil } from 'rxjs/operators'
 import BigNumber from 'bignumber.js'
 
 import Arrow from 'components/Arrow'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './BigNumberToHex.scss'
 
@@ -14,6 +14,8 @@ type Props = {
 }
 
 class BigNumberToHex extends Component<Props> {
+  destroy$ = new Subject()
+
   state = {
     changeTarget: {},
     removeTarget: {},
@@ -56,7 +58,7 @@ class BigNumberToHex extends Component<Props> {
 
   initActiveStreams = () => {
     const bignumberFocus$ = fromEvent(this.$bignumber, 'focus')
-    const bignumberMouseEnter$ = fromEvent(this.$bignumber, 'mouseenter')
+    const bignumberMouseEnter$ = onlyWhenDesktop(fromEvent(this.$bignumber, 'mouseenter'))
     const bignumberActive$ = merge(bignumberFocus$, bignumberMouseEnter$).pipe(
       tap(() => {
         this.setState({
@@ -68,7 +70,7 @@ class BigNumberToHex extends Component<Props> {
     )
 
     const hexFocus$ = fromEvent(this.$hex, 'focus')
-    const hexMouseEnter$ = fromEvent(this.$hex, 'mouseenter')
+    const hexMouseEnter$ = onlyWhenDesktop(fromEvent(this.$hex, 'mouseenter'))
     const hexActive$ = merge(hexFocus$, hexMouseEnter$).pipe(
       tap(() => {
         this.setState({

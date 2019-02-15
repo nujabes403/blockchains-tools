@@ -102,7 +102,6 @@ module.exports = {
     extractCSS,
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.NoEmitOnErrorsPlugin(),
-    new CompressionPlugin(),
     new CopyWebpackPlugin([{
       from: 'static',
       to: 'static',

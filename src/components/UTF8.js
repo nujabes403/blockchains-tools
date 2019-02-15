@@ -5,7 +5,7 @@ import { map, filter, tap } from 'rxjs/operators'
 
 import Arrow from 'components/Arrow'
 import { toHex, fromHex } from 'utils/utf8'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './UTF8.scss'
 
@@ -48,7 +48,7 @@ class UTF8 extends Component<Props> {
 
   initActiveStreams = () => {
     const utf8Focus$ = fromEvent(this.$utf8, 'focus')
-    const utf8MouseEnter$ = fromEvent(this.$utf8, 'mouseenter')
+    const utf8MouseEnter$ = onlyWhenDesktop(fromEvent(this.$utf8, 'mouseenter'))
     const utf8Active$ = merge(utf8Focus$, utf8MouseEnter$).pipe(
       tap(() => {
         this.setState({
@@ -60,7 +60,7 @@ class UTF8 extends Component<Props> {
     )
 
     const hexFocus$ = fromEvent(this.$hex, 'focus')
-    const hexMouseEnter$ = fromEvent(this.$hex, 'mouseenter')
+    const hexMouseEnter$ = onlyWhenDesktop(fromEvent(this.$hex, 'mouseenter'))
     const hexActive$ = merge(hexFocus$, hexMouseEnter$).pipe(
       tap(() => {
         this.setState({

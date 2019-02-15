@@ -5,7 +5,7 @@ import { map, filter, tap } from 'rxjs/operators'
 import bs58 from 'bs58'
 
 import Arrow from 'components/Arrow'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './Base58.scss'
 
@@ -64,7 +64,7 @@ class Base58 extends Component<Props> {
 
   initActiveStreams = () => {
     const decodedFocus$ = fromEvent(this.$decoded, 'focus')
-    const decodedMouseEnter$ = fromEvent(this.$decoded, 'mouseenter')
+    const decodedMouseEnter$ = onlyWhenDesktop(fromEvent(this.$decoded, 'mouseenter'))
     const decodedActive$ = merge(decodedFocus$, decodedMouseEnter$).pipe(
       tap(() => {
         this.setState({
@@ -76,7 +76,7 @@ class Base58 extends Component<Props> {
     )
 
     const encodedFocus$ = fromEvent(this.$encoded, 'focus')
-    const encodedMouseEnter$ = fromEvent(this.$encoded, 'mouseenter')
+    const encodedMouseEnter$ = onlyWhenDesktop(fromEvent(this.$encoded, 'mouseenter'))
     const encodedActive$ = merge(encodedFocus$, encodedMouseEnter$).pipe(
       tap(() => {
         this.setState({

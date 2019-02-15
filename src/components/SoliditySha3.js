@@ -6,6 +6,8 @@ import { map, filter, tap, takeUntil, startWith } from 'rxjs/operators'
 
 import ArrowDown from 'components/ArrowDown'
 
+import { onlyWhenDesktop } from 'utils/stream'
+
 import './SoliditySha3.scss'
 
 const web3 = new Web3('')
@@ -74,7 +76,7 @@ class SoliditySha3 extends Component<Props> {
 
   initActiveStreams = () => {
     const soliditySha3InputFocus$ = fromEvent(this.soliditySha3Input, 'focus')
-    const soliditySha3InputMouseEnter$ = fromEvent(this.soliditySha3Input, 'mouseenter')
+    const soliditySha3InputMouseEnter$ = onlyWhenDesktop(fromEvent(this.soliditySha3Input, 'mouseenter'))
     const soliditySha3InputActive$ = merge(soliditySha3InputFocus$, soliditySha3InputMouseEnter$).pipe(
       tap(() => {
         this.setState({

@@ -5,7 +5,7 @@ import { map, filter, tap } from 'rxjs/operators'
 import BigNumber from 'bignumber.js'
 
 import Arrow from 'components/Arrow'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 import { parseHex } from 'utils/hex'
 
 import './ByteArrayToHex.scss'
@@ -91,7 +91,7 @@ class ByteArrayToHex extends Component<Props> {
 
   initActiveStreams = () => {
     const byteArrayFocus$ = fromEvent(this.$byteArray, 'focus')
-    const byteArrayMouseEnter$ = fromEvent(this.$byteArray, 'mouseenter')
+    const byteArrayMouseEnter$ = onlyWhenDesktop(fromEvent(this.$byteArray, 'mouseenter'))
     const byteArrayActive$ = merge(byteArrayFocus$, byteArrayMouseEnter$).pipe(
       tap(() => {
         this.setState({
@@ -103,7 +103,7 @@ class ByteArrayToHex extends Component<Props> {
     )
 
     const hexFocus$ = fromEvent(this.$hex, 'focus')
-    const hexMouseEnter$ = fromEvent(this.$hex, 'mouseenter')
+    const hexMouseEnter$ = onlyWhenDesktop(fromEvent(this.$hex, 'mouseenter'))
     const hexActive$ = merge(hexFocus$, hexMouseEnter$).pipe(
       tap(() => {
         this.setState({

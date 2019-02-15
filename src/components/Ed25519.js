@@ -5,7 +5,7 @@ import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 
 import ArrowDown from 'components/ArrowDown'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './Ed25519.scss'
 
@@ -68,7 +68,7 @@ class Ed25519 extends Component<Props> {
 
   initActiveStreams = () => {
     const privateKeyFocus$ = fromEvent(this.$privateKey, 'focus')
-    const privateKeyMouseEnter$ = fromEvent(this.$privateKey, 'mouseenter')
+    const privateKeyMouseEnter$ = onlyWhenDesktop(fromEvent(this.$privateKey, 'mouseenter'))
     const privateKeyActive$ = merge(privateKeyFocus$, privateKeyMouseEnter$).pipe(
       tap(() => {
         this.setState({

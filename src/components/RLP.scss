@@ -1,0 +1,51 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.RLP {
+  @include mobile {
+    width: 100%;
+  }
+  width: 700px;
+  margin: 0 auto;
+}
+
+.RLP__label {
+  display: block;
+  font-size: 14px;
+}
+
+.RLP__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.RLP__decoded,
+.RLP__encoded {
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.RLP__decoded {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.RLP__encoded {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.RLP__decodedAsAscii {
+  margin: 4px;
+  text-align: left;
+  font-size: 12px;
+}

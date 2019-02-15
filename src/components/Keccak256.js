@@ -5,7 +5,7 @@ import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 
 import ArrowDown from 'components/ArrowDown'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './Keccak256.scss'
 
@@ -45,7 +45,7 @@ class Keccak256 extends Component<Props> {
 
   initActiveStreams = () => {
     const keccakInputFocus$ = fromEvent(this.$keccakInput, 'focus')
-    const keccakInputMouseEnter$ = fromEvent(this.$keccakInput, 'mouseenter')
+    const keccakInputMouseEnter$ = onlyWhenDesktop(fromEvent(this.$keccakInput, 'mouseenter'))
     const keccakInputActive$ = merge(keccakInputFocus$, keccakInputMouseEnter$).pipe(
       tap(() => {
         this.setState({

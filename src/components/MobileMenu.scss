@@ -4,7 +4,11 @@
   transition: background-color 200ms;
   &--active {
     height: 100%;
-    background-color: rgba($black, .6);
+    .MobileMenu__overlay {
+      height: 100%;
+      background-color: rgba($black, .6);
+      cursor: pointer;
+    }
   }
 }
 

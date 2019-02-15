@@ -9,6 +9,7 @@ import Base58Markdown from 'templates/Base58.md'
 import Ed25519Markdown from 'templates/Ed25519.md'
 import ByteArrayToHexMarkdown from 'templates/ByteArrayToHex.md'
 import SoliditySha3Markdown from 'templates/SoliditySha3.md'
+import RLPMarkdown from 'templates/RLP.md'
 
 const linkToDescription = {
   '/': {
@@ -17,7 +18,7 @@ const linkToDescription = {
   },
   '/rlp': {
     title: 'RLP',
-    markdown: '',
+    markdown: RLPMarkdown,
   },
   '/key': {
     title: 'PRIVATE KEY TO ADDRESS',

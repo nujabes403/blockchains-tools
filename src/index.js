@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+const isMobile = require('ismobilejs')
 
 import App from './App'
 import Introduction from 'components/Introduction'
@@ -16,6 +17,8 @@ import Base58 from 'components/Base58'
 import Ed25519 from 'components/Ed25519'
 import ByteArrayToHex from 'components/ByteArrayToHex'
 import SoliditySha3 from 'components/SoliditySha3'
+
+window.isMobile = isMobile
 
 // injectLibraries
 import 'utils/injectLibraries'

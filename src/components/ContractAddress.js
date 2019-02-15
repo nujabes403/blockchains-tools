@@ -6,7 +6,7 @@ import keccak256 from 'keccak256'
 const rlp = require('rlp')
 
 import ArrowDown from 'components/ArrowDown'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './ContractAddress.scss'
 
@@ -59,11 +59,11 @@ class ContractAddress extends Component<Props> {
 
   initActiveStreams = () => {
     const senderFocus$ = fromEvent(this.$sender, 'focus')
-    const senderMouseEnter$ = fromEvent(this.$sender, 'mouseenter')
+    const senderMouseEnter$ = onlyWhenDesktop(fromEvent(this.$sender, 'mouseenter'))
     const senderActive$ = merge(senderFocus$, senderMouseEnter$)
 
     const nonceFocus$ = fromEvent(this.$nonce, 'focus')
-    const nonceMouseEnter$ = fromEvent(this.$nonce, 'mouseenter')
+    const nonceMouseEnter$ = onlyWhenDesktop(fromEvent(this.$nonce, 'mouseenter'))
     const nonceActive$ = merge(nonceFocus$, nonceMouseEnter$)
 
     putSubscriptions(

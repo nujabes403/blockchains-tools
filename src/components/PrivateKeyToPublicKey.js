@@ -7,7 +7,7 @@ import keccak256 from 'keccak256'
 import Input from 'components/Input'
 import ArrowDown from 'components/ArrowDown'
 import ec from 'utils/elliptic'
-import { putSubscriptions, unsubscribeAll } from 'utils/stream'
+import { putSubscriptions, unsubscribeAll, onlyWhenDesktop } from 'utils/stream'
 
 import './PrivateKeyToPublicKey.scss'
 
@@ -76,7 +76,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
 
   initActiveStreams = () => {
     const privateKeyFocus$ = fromEvent(this.$privateKey, 'focus')
-    const privateKeyMouseEnter$ = fromEvent(this.$privateKey, 'mouseenter')
+    const privateKeyMouseEnter$ = onlyWhenDesktop(fromEvent(this.$privateKey, 'mouseenter'))
     const privateKeyActive$ = merge(privateKeyFocus$, privateKeyMouseEnter$).pipe(
       tap(() => {
         this.setState({
@@ -89,7 +89,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
     )
 
     const publicKeyFocus$ = fromEvent(this.$publicKey, 'focus')
-    const publicKeyMouseEnter$ = fromEvent(this.$publicKey, 'mouseenter')
+    const publicKeyMouseEnter$ = onlyWhenDesktop(fromEvent(this.$publicKey, 'mouseenter'))
     const publicKeyActive$ = merge(publicKeyFocus$, publicKeyMouseEnter$).pipe(
       tap(() => {
         this.setState({

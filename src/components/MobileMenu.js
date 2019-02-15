@@ -69,11 +69,18 @@ class MobileMenu extends Component<Props> {
     const { activeBookLabel, isOpen } = this.state
     const { className } = this.props
     return (
-      <div className={cx('MobileMenu', className, {
-        "MobileMenu--active": isOpen
-      })}>
-        <Hamburger className="MobileMenu__hamburger" onClick={this.toggleMenu} />
+      <div
+        className={cx('MobileMenu', className, {
+          "MobileMenu--active": isOpen
+        })}
+      >
+        <Hamburger
+          className="MobileMenu__hamburger"
+          onClick={this.toggleMenu}
+          isMenuOpen={isOpen}
+        />
         {isOpen && this.renderContents()}
+        <div onClick={this.toggleMenu} className="MobileMenu__overlay" />
       </div>
     )
   }

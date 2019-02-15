@@ -5,6 +5,8 @@ import { fromEvent, merge } from 'rxjs'
 import { map, filter, tap } from 'rxjs/operators'
 const { RLP: rlp, bytes } = require('eth-lib')
 
+import { onlyWhenDesktop } from 'utils/stream'
+
 import './RawTransactionEncoder.scss'
 
 type Props = {
@@ -74,7 +76,7 @@ class RawTransactionEncoder extends Component<Props> {
 
   initActiveStreams = () => {
     const keccakInputFocus$ = fromEvent(this.$keccakInput, 'focus')
-    const keccakInputMouseEnter$ = fromEvent(this.$keccakInput, 'mouseenter')
+    const keccakInputMouseEnter$ = onlyWhenDesktop(fromEvent(this.$keccakInput, 'mouseenter'))
     const keccakInputActive$ = merge(keccakInputFocus$, keccakInputMouseEnter$).pipe(
       tap(() => {
         this.setState({
