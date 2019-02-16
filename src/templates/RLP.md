@@ -9,6 +9,8 @@ A string (ie. byte array) is an item
 A list of items is an item  
 <br />
 
+<span style="color: #618BF7;">\* For string type, you should add `" "` to the string.  </span>  
+<br />
 cf) "RLP" uses `rlp` as a library.  
 [(https://github.com/ethereumjs/rlp)](https://github.com/ethereumjs/rlp)  
 You can use this library with `window.rlp` in browser console of this page.
