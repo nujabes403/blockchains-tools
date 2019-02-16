@@ -24,6 +24,12 @@
 @font-face {
   font-family: 'Montserrat';
   src: url(/static/fonts/Montserrat-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url(/static/fonts/Montserrat-Medium.ttf);
 }
 
 html {
@@ -58,5 +64,9 @@ body {
 
   input, textarea {
     font-size: 16px !important;
+  }
+
+  label {
+    font-family: 'Montserrat';
   }
 }
