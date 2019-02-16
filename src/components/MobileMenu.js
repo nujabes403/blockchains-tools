@@ -30,7 +30,7 @@ class MobileMenu extends Component<Props> {
   toggleMenu = () => {
     const willClose = this.state.isOpen
 
-    document.body.style.overflow = willClose ? 'auto' : 'hidden'
+    document.body.className = willClose ? '' : 'locked'
 
     this.setState({
       isOpen: !this.state.isOpen,

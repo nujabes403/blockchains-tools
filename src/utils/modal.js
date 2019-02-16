@@ -4,7 +4,7 @@ export const modal$ = new Subject()
 
 export const openModal = ({ title, content }) => {
   // For preventing background scrolling
-  document.body.style.overflow = 'hidden'
+  document.body.className = 'locked'
 
   modal$.next({
     title,
@@ -13,7 +13,7 @@ export const openModal = ({ title, content }) => {
 }
 
 export const closeModal = () => {
-  document.body.style.overflow = 'auto'
+  document.body.className = ''
   modal$.next({
     title: '',
     content: '',
