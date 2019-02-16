@@ -28,6 +28,10 @@ class MobileMenu extends Component<Props> {
   }
 
   toggleMenu = () => {
+    const willClose = this.state.isOpen
+
+    document.body.style.overflow = willClose ? 'auto' : 'hidden'
+
     this.setState({
       isOpen: !this.state.isOpen,
     })
@@ -35,9 +39,12 @@ class MobileMenu extends Component<Props> {
 
   renderContents = () => {
     const { activeBookLabel } = this.state
-    return bookLabels.map((title, idx) => (
+    const bookLabelWidth = (100 / bookLabels.length) + '%'
+    return (
       <Fragment>
+      {bookLabels.map((title, idx) => (
         <div
+          style={{ width: bookLabelWidth }}
           className={cx('MobileMenu__bookLabel', {
             [`MobileMenu__bookLabel--${title}`]: title,
           })}
@@ -45,24 +52,23 @@ class MobileMenu extends Component<Props> {
         >
           {title}
         </div>
-        {activeBookLabel === title && (
-          <div className="MobileMenu__itemList">
-            {menuItems[activeBookLabel].map(({ title, link }) => (
-              <Link
-                key={title}
-                to={link}
-                onClick={this.toggleMenu}
-                className={cx('MobileMenu__item', {
-                  [`MobileMenu__item--${activeBookLabel}`]: activeBookLabel,
-                })}
-              >
-                {title}
-              </Link>
-            ))}
-          </div>
-        )}
+      ))}
+      <div className="MobileMenu__itemList">
+        {menuItems[activeBookLabel] && menuItems[activeBookLabel].map(({ title, link }) => (
+          <Link
+            key={title}
+            to={link}
+            onClick={this.toggleMenu}
+            className={cx('MobileMenu__item', {
+              [`MobileMenu__item--${activeBookLabel}`]: activeBookLabel,
+            })}
+          >
+            {title}
+          </Link>
+        ))}
+      </div>
       </Fragment>
-    ))
+    )
   }
 
   render() {

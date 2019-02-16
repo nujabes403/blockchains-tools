@@ -20,11 +20,15 @@ class Hamburger extends Component<Props> {
         className={cx('Hamburger', className, {
           'Hamburger--active': isMenuOpen
         })}
-        onClick={this.handleToggle}
       >
-        <span className="Hamburger__line" />
-        <span className="Hamburger__line" />
-        <span className="Hamburger__line" />
+        <div
+          className="Hamburger__item"
+          onClick={this.handleToggle}
+        >
+          <span className="Hamburger__line" />
+          <span className="Hamburger__line" />
+          <span className="Hamburger__line" />
+        </div>
       </div>
     )
   }
