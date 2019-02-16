@@ -24,11 +24,13 @@ class SectionDescription extends Component<Props> {
           <img
             src="/static/images/question.png"
             onClick={() => {
-              audio.play()
               openModal({
                 title: linkToDescription[pathname].title,
                 content: linkToDescription[pathname].markdown,
               })
+
+              if (window.isMobile.any) return
+              audio.play()
             }}
             className="SectionDescription__questionMark"
           />
