@@ -16,6 +16,10 @@
     display: block;
     width: 100%;
     padding: 50px 20px;
+
+    &--introduction {
+      padding: 50px 0;
+    }
   }
 
   @include desktop {

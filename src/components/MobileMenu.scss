@@ -2,6 +2,9 @@
 
 .MobileMenu {
   transition: background-color 200ms;
+  background-color: $white;
+  box-shadow: 0px 1px 5px #999999;
+
   &--active {
     height: 100%;
     .MobileMenu__overlay {

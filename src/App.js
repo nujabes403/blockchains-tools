@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import cx from 'classnames'
 
 import Header from 'components/Header'
 import SectionDescription from 'components/SectionDescription'
@@ -25,7 +26,10 @@ class App extends Component<Props> {
       <Fragment>
         <Modal />
         <div className="App">
-          <div className="App__section">
+          <div className={cx('App__section', {
+            'App__section--introduction': location.pathname === '/',
+          })}
+          >
             <SectionDescription
               hasModal={location.pathname !== '/'}
               pathname={location.pathname}
