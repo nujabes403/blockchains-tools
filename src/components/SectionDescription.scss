@@ -11,6 +11,18 @@
   font-size: 40px;
   padding: 6px;
   background-color: rgba($white, .85);
+
+  &--introduction {
+    @include mobile {
+      .SectionDescription__title {
+        display: block;
+        font-size: 20px;
+        font-family: 'Montserrat';
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
 }
 
 .SectionDescription__title {

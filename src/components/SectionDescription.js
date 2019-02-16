@@ -18,7 +18,9 @@ class SectionDescription extends Component<Props> {
   render() {
     const { className, pathname, hasModal } = this.props
     return (
-      <div className={cx('SectionDescription', className)}>
+      <div className={cx('SectionDescription', className, {
+        'SectionDescription--introduction': pathname === '/',
+      })}>
         <header className="SectionDescription__title">{linkToDescription[pathname].title}</header>
         {hasModal && (
           <img
