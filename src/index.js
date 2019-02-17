@@ -17,6 +17,7 @@ import Base58 from 'components/Base58'
 import Ed25519 from 'components/Ed25519'
 import ByteArrayToHex from 'components/ByteArrayToHex'
 import SoliditySha3 from 'components/SoliditySha3'
+import WeiConverter from 'components/WeiConverter'
 
 window.isMobile = isMobile
 
@@ -57,6 +58,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/ed25519" component={Ed25519} />
       <Route path="/byteArrayToHex" component={ByteArrayToHex} />
       <Route path="/soliditySha3" component={SoliditySha3} />
+      <Route path="/weiConverter" component={WeiConverter} />
     </Route>
   </Router>
 )

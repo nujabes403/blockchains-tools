@@ -43,6 +43,7 @@ class Menu extends Component<Props> {
         ))}
         {bookLabels.map((title, idx) => (
           <BookLabel
+            key={title}
             style={{
               top: (idx * 50) + 28,
             }}

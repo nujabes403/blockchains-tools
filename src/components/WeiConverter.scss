@@ -1,0 +1,27 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.WeiConverter {
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.WeiConverter__label {
+  display: block;
+  font-size: 14px;
+}
+
+.WeiConverter__inputWrapper {
+  margin: 4px;
+}
+
+.WeiConverter__unit {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 6px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}

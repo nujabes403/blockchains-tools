@@ -15,6 +15,7 @@ export const menuItems = {
     { title: 'RAW TRANSACTION ENCODER', link: '/rawTransactionEncoder' },
     { title: 'RAW TRANSACTION DECODER', link: '/rawTransactionDecoder' },
     { title: 'SOLIDITY SHA3', link: '/soliditySha3' },
+    { title: 'WEI CONVERTER', link: '/weiConverter' },
   ],
   'EOS': [
     {}

@@ -10,6 +10,7 @@ import Ed25519Markdown from 'templates/Ed25519.md'
 import ByteArrayToHexMarkdown from 'templates/ByteArrayToHex.md'
 import SoliditySha3Markdown from 'templates/SoliditySha3.md'
 import RLPMarkdown from 'templates/RLP.md'
+import WeiConverterMarkdown from 'templates/WeiConverter.md'
 
 const linkToDescription = {
   '/': {
@@ -37,11 +38,11 @@ const linkToDescription = {
     markdown: Keccak256Markdown,
   },
   '/rawTransactionEncoder': {
-    title: 'RAW TRANSACTION ENCODER',
+    title: 'RAW TX ENCODER',
     markdown: '',
   },
   '/rawTransactionDecoder': {
-    title: 'RAW TRANSACTION DECODER',
+    title: 'RAW TX DECODER',
     markdown: '',
   },
   '/utf8': {
@@ -63,6 +64,10 @@ const linkToDescription = {
   '/soliditySha3': {
     title: 'SOLIDITY SHA3',
     markdown: SoliditySha3Markdown,
+  },
+  '/weiConverter': {
+    title: 'WEI CONVERTER',
+    markdown: WeiConverterMarkdown,
   },
 }
 
