@@ -1,8 +1,6 @@
 <img src="/static/images/favicon@64.png" alt="blockchains-tools Logo" width="86" height="86"> blockchains-tools: Blockchain-related tools For Online
 ======================================
 
-# blockchains-tools
-
 ## Provides blockchain-related tools
 This website is created for providing developers frequently-used blockchain-related functions(tools) easily. 
 
