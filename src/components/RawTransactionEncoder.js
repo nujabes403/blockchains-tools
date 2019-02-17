@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import cx from 'classnames'
-import keccak256 from 'keccak256'
-import { fromEvent, merge } from 'rxjs'
-import { map, filter, tap } from 'rxjs/operators'
-const { RLP: rlp, bytes } = require('eth-lib')
+import BigNumber from 'bignumber.js'
+import { of, fromEvent, merge, combineLatest, Subject, BehaviorSubject, empty } from 'rxjs'
+import { map, filter, tap, startWith, takeUntil } from 'rxjs/operators'
+const { RLP: rlp, account: Account, hash: Hash, nat: Nat, bytes } = require('eth-lib')
 
+import Arrow from 'components/Arrow'
 import { onlyWhenDesktop } from 'utils/stream'
 
 import './RawTransactionEncoder.scss'
@@ -14,148 +15,306 @@ type Props = {
 }
 
 class RawTransactionEncoder extends Component<Props> {
+  destroy$ = new Subject()
+  signMaterial$ = new BehaviorSubject()
+  signatureCreated$ = new Subject()
+
+  $rawTransactionHex = createRef()
+
   state = {
-    nonce: '',
-    gasPrice: '',
-    gasLimit: '',
-    to: '',
-    data: '',
-    v: '',
-    r: '',
-    s: '',
     changeTarget: {},
+    hasSignature: true,
   }
 
   componentDidMount() {
-    this.initInputChangeStreams()
+    this.initTxParamChangeStreams()
+    this.initPrivateKeyChangeStreams()
     this.initActiveStreams()
     this.initDeactiveStreams()
   }
 
-  initInputChangeStreams = () => {
-    // Input Change Streams
-    const rawTransactionHexChange$ = fromEvent(this.$rawTransactionHex, 'input').pipe(
-        map(e => e.target.value)
-      )
+  initTxParamChangeStreams = () => {
 
-    rawTransactionHexChange$.subscribe((hex) => {
-      let decodedOutput
+    const txParamCommonObservable = ($elem) => {
+      return fromEvent($elem, 'input').pipe(
+        map(e => {
+          return e.target.value
+            ? '0x' + new BigNumber(e.target.value).toString(16)
+            : '0x'
+        }),
+        startWith('0x'),
+      )
+    }
+
+    const txSignatureParamCommonObservable = ($elem) => {
+      return fromEvent($elem, 'input').pipe(
+        map(e => {
+          if (!e.target.value) return '0x'
+          return e.target.value.startsWith('0x')
+            ? e.target.value
+            : '0x' + e.target.value
+        }),
+        startWith('0x'),
+      )
+    }
+
+    const toChange$ = fromEvent(this.$to, 'input').pipe(
+      map(e => {
+        return e.target.value.startsWith('0x')
+          ? e.target.value
+          : '0x' + e.target.value
+      }),
+      startWith('0x'),
+    )
+
+    const txParameterChange$ = combineLatest(
+      txParamCommonObservable(this.$nonce),
+      txParamCommonObservable(this.$gasPrice),
+      txParamCommonObservable(this.$gasLimit),
+      toChange$,
+      txParamCommonObservable(this.$value),
+      txParamCommonObservable(this.$data),
+      txParamCommonObservable(this.$chainId),
+      merge(
+        this.signatureCreated$.pipe(
+            map(([v, r, s]) => v),
+            tap(v => {
+              this.$v.value = v
+            })
+          ),
+        txSignatureParamCommonObservable(this.$v)
+      ),
+      merge(
+        this.signatureCreated$.pipe(
+            map(([v, r, s]) => r),
+            tap((r) => {
+              this.$r.value = r
+            })
+          ),
+        txSignatureParamCommonObservable(this.$r)
+      ),
+      merge(
+        this.signatureCreated$.pipe(
+            map(([v, r, s]) => s),
+            tap((s) => {
+              this.$s.value = s
+            })
+          ),
+        txSignatureParamCommonObservable(this.$s)
+      )
+    ).pipe(
+      takeUntil(this.destroy$),
+    )
+
+    txParameterChange$.subscribe((txParameters) => {
+      const [nonce, gasPrice, gasLimit, to, value, data, chainId, v, r, s] = txParameters
+
+      const _chainId = chainId === '0x' ? '0x1' : chainId
+
+      const rlpEncoded = rlp.encode([
+        bytes.fromNat(nonce),
+        bytes.fromNat(gasPrice),
+        bytes.fromNat(gasLimit),
+        to.toLowerCase(),
+        bytes.fromNat(value),
+        bytes.fromNat(data),
+        bytes.fromNat(_chainId),
+        "0x",
+        "0x",
+      ])
+
+      const messageHash = Hash.keccak256(rlpEncoded)
+
+      const rlpDecoded = rlp.decode(rlpEncoded)
+
+      const rawTransaction = rlp.encode(
+        rlpDecoded.slice(0, 6).concat([
+            bytes.fromNat(v),
+            bytes.fromNat(r),
+            bytes.fromNat(s),
+          ]))
+
+      this.$rawTransactionHex.current.value = rawTransaction
+
+      this.signMaterial$.next({
+        chainId: _chainId,
+        messageHash,
+      })
+    })
+  }
+
+  initPrivateKeyChangeStreams = () => {
+    const privateKeyChange$ = fromEvent(this.$privateKey, 'input').pipe(
+      map(e => {
+        return e.target.value.startsWith('0x')
+          ? e.target.value
+          : '0x' + new BigNumber(e.target.value).toString(16)
+      }),
+      takeUntil(this.destroy$)
+    )
+
+    privateKeyChange$.subscribe((privateKey) => {
+
+      const { messageHash, chainId } = this.signMaterial$.value
 
       try {
-        decodedOutput = rlp.decode(hex)
-        if (decodedOutput instanceof Array && decodedOutput.length !== 0) {
-          const [nonce, gasPrice, gasLimit, to, value, data, v, r, s] = decodedOutput
-          this.setState({
-            nonce,
-            gasPrice,
-            gasLimit,
-            to,
-            value,
-            data,
-            v,
-            r,
-            s,
-          })
-        }
+        const signature = Account.makeSigner(
+          Nat.toNumber(chainId || "0x1") * 2 + 35
+        )(messageHash, privateKey)
+
+        const [v, r, s] = Account.decodeSignature(signature)
+          .map(sig => bytes.fromNat(sig))
+
+        this.signatureCreated$.next([v, r, s])
+
       } catch (e) {
-        console.log(e, 'err')
-        this.setState({
-          nonce: '',
-          gasPrice: '',
-          gasLimit: '',
-          to: '',
-          value: '',
-          data: '',
-          v: '',
-          r: '',
-          s: '',
-        })
+        console.log(e)
       }
     })
   }
 
   initActiveStreams = () => {
-    const keccakInputFocus$ = fromEvent(this.$keccakInput, 'focus')
-    const keccakInputMouseEnter$ = onlyWhenDesktop(fromEvent(this.$keccakInput, 'mouseenter'))
-    const keccakInputActive$ = merge(keccakInputFocus$, keccakInputMouseEnter$).pipe(
+    const txParaminputElems = [
+      this.$nonce,
+      this.$gasPrice,
+      this.$gasLimit,
+      this.$to,
+      this.$value,
+      this.$data,
+      this.$chainId,
+      this.$v,
+      this.$r,
+      this.$s,
+      this.$privateKey,
+    ]
+
+    const focusObservables = txParaminputElems.map(($elem) => fromEvent($elem, 'focus'))
+    const mouseenterObservables = txParaminputElems.map(($elem) => onlyWhenDesktop(fromEvent($elem, 'mouseenter')))
+
+    const txParamInputActive$ = merge(
+      ...focusObservables,
+      ...mouseenterObservables,
+    ).pipe(
       tap(() => {
         this.setState({
           changeTarget: {
-            keccakOutput: true,
+            rawTransaction: true,
           }
         })
-      })
+      }),
+      takeUntil(this.destroy$),
     )
 
-    keccakInputActive$.subscribe()
+    txParamInputActive$.subscribe()
   }
 
   initDeactiveStreams = () => {
-    const blur$ = fromEvent(this.$keccakInput, 'blur')
-    const mouseleave$ = fromEvent(this.$keccakInput, 'mouseleave')
+    const txParaminputElems = [
+      this.$nonce,
+      this.$gasPrice,
+      this.$gasLimit,
+      this.$to,
+      this.$value,
+      this.$data,
+      this.$chainId,
+      this.$v,
+      this.$r,
+      this.$s,
+      this.$privateKey,
+    ]
 
-    const deactive$ = merge(blur$, mouseleave$).pipe(
+    const blurObservables = txParaminputElems.map(($elem) => fromEvent($elem, 'blur'))
+    const mouseleaveObservables = txParaminputElems.map(($elem) => fromEvent($elem, 'mouseleave'))
+
+    const deactive$ = merge(
+      ...blurObservables,
+      ...mouseleaveObservables,
+    ).pipe(
       filter((e) => document.activeElement !== e.fromElement),
       tap(() => {
         this.setState({
           changeTarget: {},
         })
-      })
+      }),
+      takeUntil(this.destroy$)
     )
 
     deactive$.subscribe()
   }
 
-  render() {
-    const {
-      changeTarget,
-      nonce,
-      gasPrice,
-      gasLimit,
-      to,
-      value,
-      data,
-      v,
-      r,
-      s,
-    } = this.state
+  componentWillUnmount() {
+    this.destroy$.next(true)
+  }
 
-    const decodedOutput = {
-      nonce,
-      gasPrice,
-      gasLimit,
-      to,
-      value,
-      data,
-      v,
-      r,
-      s,
-    }
+  handleCheck = () => {
+    this.setState({ hasSignature: !this.state.hasSignature })
+  }
+
+  render() {
+    const { changeTarget, hasSignature } = this.state
+
+    const txParameters = ['nonce', 'gasPrice', 'gasLimit', 'to', 'value', 'data']
+    const txSignatures = ['v', 'r', 's']
+    const signMaterial = ['chainId', 'privateKey']
 
     return (
       <div className="RawTransactionEncoder">
+        {txParameters.map((txParameter) => (
+            <div className="RawTransactionEncoder__inputWrapper">
+              <label className="RawTransactionEncoder__label">{txParameter}:</label>
+              <input
+                key={txParameter}
+                ref={($txParameter) => this['$' + txParameter] = $txParameter}
+                className={cx('RawTransactionEncoder__txParameter')}
+              />
+            </div>
+          ))
+        }
+        <label>
+          <input
+            type="checkbox"
+            checked={hasSignature}
+            onChange={this.handleCheck}
+          />
+          Already have signatures (Doesn't need to sign transaction with a private key)
+        </label>
+        {signMaterial.map((material) => (
+          <div className={cx('RawTransactionEncoder__inputWrapper', {
+              'RawTransactionEncoder__inputWrapper--invisible': hasSignature,
+            })}
+          >
+            <label className="RawTransactionEncoder__label">{material}:</label>
+            <input
+              key={material}
+              ref={($material) => this['$' + material] = $material}
+              className={cx('RawTransactionEncoder__txParameter')}
+            />
+          </div>
+        ))}
+        {txSignatures.map((txSignature) => (
+          <div className={cx('RawTransactionEncoder__inputWrapper', {
+            'RawTransactionEncoder__inputWrapper--readOnly': !hasSignature,
+          })}>
+            <label className="RawTransactionEncoder__label">{txSignature}:</label>
+            <input
+              key={txSignature}
+              ref={($txSignature) => this['$' + txSignature] = $txSignature}
+              className={cx('RawTransactionEncoder__txParameter')}
+              readOnly={!hasSignature}
+            />
+          </div>
+        ))}
+        <Arrow down />
         <div className="RawTransactionEncoder__inputWrapper">
-          <label className="RawTransactionEncoder__label">Input:</label>
+          <label className="RawTransactionEncoder__label">Raw transaction:</label>
           <textarea
-            className="RawTransactionEncoder__rawTxInput"
-            ref={($rawTransactionHex) => this.$rawTransactionHex = $rawTransactionHex}
+            className={cx('RawTransactionEncoder__rawTransaction', {
+              'RawTransactionEncoder__rawTransaction--changeTarget': changeTarget.rawTransaction,
+            })}
+            ref={this.$rawTransactionHex}
+            readOnly
           />
         </div>
-        {Object
-            .keys(decodedOutput)
-            .map((key) => {
-              return (
-                <div className="RawTransactionEncoder__inputWrapper">
-                  <label className="RawTransactionEncoder__label">{key}:</label>
-                  <input
-                    className={cx('RawTransactionEncoder__decodedOutput')}
-                    readOnly
-                    value={decodedOutput[key]}
-                  />
-                </div>
-              )
-            })
-          }
       </div>
     )
   }
