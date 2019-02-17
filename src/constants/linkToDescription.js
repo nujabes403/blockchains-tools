@@ -11,6 +11,8 @@ import ByteArrayToHexMarkdown from 'templates/ByteArrayToHex.md'
 import SoliditySha3Markdown from 'templates/SoliditySha3.md'
 import RLPMarkdown from 'templates/RLP.md'
 import WeiConverterMarkdown from 'templates/WeiConverter.md'
+import RawTransactionEncoderMarkdown from 'templates/RawTransactionEncoder.md'
+import RawTransactionDecoderMarkdown from 'templates/RawTransactionDecoder.md'
 
 const linkToDescription = {
   '/': {
@@ -39,11 +41,11 @@ const linkToDescription = {
   },
   '/rawTransactionEncoder': {
     title: 'RAW TX ENCODER',
-    markdown: '',
+    markdown: RawTransactionEncoderMarkdown,
   },
   '/rawTransactionDecoder': {
     title: 'RAW TX DECODER',
-    markdown: '',
+    markdown: RawTransactionDecoderMarkdown,
   },
   '/utf8': {
     title: 'UTF8',
