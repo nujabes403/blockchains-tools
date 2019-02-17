@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import keccak256 from 'keccak256'
-import { fromEvent, merge } from 'rxjs'
-import { map, filter, tap } from 'rxjs/operators'
+import { fromEvent, merge, Subject } from 'rxjs'
+import { map, filter, tap, takeUntil } from 'rxjs/operators'
 const { RLP: rlp, bytes } = require('eth-lib')
 
+import Arrow from 'components/Arrow'
 import { onlyWhenDesktop } from 'utils/stream'
 
 import './RawTransactionDecoder.scss'
@@ -14,6 +15,8 @@ type Props = {
 }
 
 class RawTransactionDecoder extends Component<Props> {
+  destroy$ = new Subject()
+
   state = {
     nonce: '',
     gasPrice: '',
@@ -28,14 +31,13 @@ class RawTransactionDecoder extends Component<Props> {
 
   componentDidMount() {
     this.initInputChangeStreams()
-    this.initActiveStreams()
-    this.initDeactiveStreams()
   }
 
   initInputChangeStreams = () => {
     // Input Change Streams
     const rawTransactionHexChange$ = fromEvent(this.$rawTransactionHex, 'input').pipe(
-        map(e => e.target.value)
+        map(e => e.target.value),
+        takeUntil(this.destroy$),
       )
 
     rawTransactionHexChange$.subscribe((hex) => {
@@ -46,11 +48,13 @@ class RawTransactionDecoder extends Component<Props> {
         if (decodedOutput instanceof Array && decodedOutput.length !== 0) {
           const [nonce, gasPrice, gasLimit, to, value, data, v, r, s] = decodedOutput
           this.setState({
-            nonce,
-            gasPrice,
-            gasLimit,
+            nonce: new BigNumber(nonce).toString(10) + ` (${(nonce)})`,
+            gasPrice: new BigNumber(gasPrice).toString(10) + ` (${(gasPrice)})`,
+            gasLimit: new BigNumber(gasLimit).toString(10) + ` (${(gasLimit)})`,
             to,
-            value,
+            value: value !== '0x'
+              ? new BigNumber(value).toString(10) + ` (${(value)})`
+              : '0x',
             data,
             v,
             r,
@@ -74,41 +78,8 @@ class RawTransactionDecoder extends Component<Props> {
     })
   }
 
-  initActiveStreams = () => {
-    const keccakInputFocus$ = fromEvent(this.$keccakInput, 'focus')
-    const keccakInputMouseEnter$ = onlyWhenDesktop(fromEvent(this.$keccakInput, 'mouseenter'))
-    const keccakInputActive$ = merge(keccakInputFocus$, keccakInputMouseEnter$).pipe(
-      tap(() => {
-        this.setState({
-          changeTarget: {
-            keccakOutput: true,
-          }
-        })
-      })
-    )
-
-    keccakInputActive$.subscribe()
-  }
-
-  initDeactiveStreams = () => {
-    const blur$ = fromEvent(this.$keccakInput, 'blur')
-    const mouseleave$ = fromEvent(this.$keccakInput, 'mouseleave')
-
-    const deactive$ = merge(blur$, mouseleave$).pipe(
-      filter((e) => document.activeElement !== e.fromElement),
-      tap(() => {
-        this.setState({
-          changeTarget: {},
-        })
-      })
-    )
-
-    deactive$.subscribe()
-  }
-
   render() {
     const {
-      changeTarget,
       nonce,
       gasPrice,
       gasLimit,
@@ -120,27 +91,18 @@ class RawTransactionDecoder extends Component<Props> {
       s,
     } = this.state
 
-    const decodedOutput = {
-      nonce,
-      gasPrice,
-      gasLimit,
-      to,
-      value,
-      data,
-      v,
-      r,
-      s,
-    }
+    const decodedOutput = { nonce, gasPrice, gasLimit, to, value, data, v, r, s }
 
     return (
       <div className="RawTransactionDecoder">
         <div className="RawTransactionDecoder__inputWrapper">
-          <label className="RawTransactionDecoder__label">Input:</label>
+          <label className="RawTransactionDecoder__label">Raw Tx:</label>
           <textarea
             className="RawTransactionDecoder__rawTxInput"
             ref={($rawTransactionHex) => this.$rawTransactionHex = $rawTransactionHex}
           />
         </div>
+        <Arrow down />
         {Object
             .keys(decodedOutput)
             .map((key) => {
