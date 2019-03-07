@@ -134,7 +134,7 @@ class ContractAddress extends Component<Props> {
         </div>
         <ArrowDown visible={changeTarget.contractAddress} />
         <div className="ContractAddress__inputWrapper">
-          <label className="ContractAddress__label">Contaract address:</label>
+          <label className="ContractAddress__label">Contract address:</label>
           <input
             className={cx('ContractAddress__contractAddress', {
               'ContractAddress__contractAddress--changeTarget': changeTarget.contractAddress,
