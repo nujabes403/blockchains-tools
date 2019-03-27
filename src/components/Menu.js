@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import cx from 'classnames'
+import queryString from 'query-string'
 
 import BookLabel from 'components/BookLabel'
 import { menuItems, bookLabels } from 'constants/menu'
@@ -13,7 +14,9 @@ type Props = {
 
 class Menu extends Component<Props> {
   state = {
-    activeBookLabel: 'GENERAL' // default
+    activeBookLabel: queryString.parse(window.location.search) 
+      && queryString.parse(window.location.search).l 
+      || 'GENERAL' // default
   }
 
   handleBookLabel = (bookLabel) => {
