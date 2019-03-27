@@ -13,6 +13,7 @@ import RLPMarkdown from 'templates/RLP.md'
 import WeiConverterMarkdown from 'templates/WeiConverter.md'
 import RawTransactionEncoderMarkdown from 'templates/RawTransactionEncoder.md'
 import RawTransactionDecoderMarkdown from 'templates/RawTransactionDecoder.md'
+import PebConverterMarkdown from 'templates/PebConverter.md'
 
 const linkToDescription = {
   '/': {
@@ -70,6 +71,14 @@ const linkToDescription = {
   '/weiConverter': {
     title: 'WEI CONVERTER',
     markdown: WeiConverterMarkdown,
+  },
+  '/pebConverter': {
+    title: 'PEB CONVERTER',
+    markdown: PebConverterMarkdown,
+  },
+  '/humanreadableAddress': {
+    title: 'HUMAN-READABLE ADDRESS',
+    markdown: UTF8Markdown,
   },
 }
 

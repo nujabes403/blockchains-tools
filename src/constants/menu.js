@@ -17,9 +17,10 @@ export const menuItems = {
     { title: 'SOLIDITY SHA3', link: '/soliditySha3' },
     { title: 'WEI CONVERTER', link: '/weiConverter' },
   ],
-  'EOS': [
-    {}
+  'KLAY': [
+    { title: 'PEB CONVERTER', link: '/pebConverter' },
+    { title: 'HUMAN-READABLE ADDRESS', link: '/humanreadableAddress' },
   ]
 }
 
-export const bookLabels = ['GENERAL', 'ETH', 'EOS']
+export const bookLabels = ['GENERAL', 'ETH', 'KLAY']

@@ -18,6 +18,9 @@ import Ed25519 from 'components/Ed25519'
 import ByteArrayToHex from 'components/ByteArrayToHex'
 import SoliditySha3 from 'components/SoliditySha3'
 import WeiConverter from 'components/WeiConverter'
+// KLAY-specific
+import PebConverter from 'components/PebConverter'
+import HumanreadableAddress from 'components/HumanreadableAddress'
 
 window.isMobile = isMobile
 
@@ -59,6 +62,8 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/byteArrayToHex" component={ByteArrayToHex} />
       <Route path="/soliditySha3" component={SoliditySha3} />
       <Route path="/weiConverter" component={WeiConverter} />
+      <Route path="/pebConverter" component={PebConverter} />
+      <Route path="/humanreadableAddress" component={HumanreadableAddress} />
     </Route>
   </Router>
 )
