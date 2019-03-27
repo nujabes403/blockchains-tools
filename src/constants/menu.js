@@ -20,6 +20,8 @@ export const menuItems = {
   'KLAY': [
     { title: 'PEB CONVERTER', link: '/pebConverter' },
     { title: 'HUMAN-READABLE ADDRESS', link: '/humanreadableAddress' },
+    { title: 'PRIVATEKEY TO ADDRESS', link: '/key' },
+    { title: 'KECCAK256', link: '/keccak256' },
   ]
 }
 
