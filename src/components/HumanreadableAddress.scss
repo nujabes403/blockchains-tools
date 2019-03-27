@@ -1,0 +1,45 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.HumanreadableAddress {
+  @include mobile {
+    width: 100%
+  }
+  width: 700px;
+  margin: 0 auto;
+}
+
+.HumanreadableAddress__label {
+  display: block;
+  font-size: 14px;
+}
+
+.HumanreadableAddress__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.HumanreadableAddress__humanreadableString,
+.HumanreadableAddress__hex {
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.HumanreadableAddress__humanreadableString {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.HumanreadableAddress__hex {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
