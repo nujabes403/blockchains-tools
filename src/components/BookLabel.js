@@ -6,7 +6,7 @@ import './BookLabel.scss'
 const colors = {
   GENERAL: '#61c19e',
   ETH: '#737474',
-  EOS: '#3570D8',
+  KLAY: '#3570D8',
 }
 
 const BookLabel = ({ title, style, active, onClick }) => (
