@@ -1,0 +1,27 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.PebConverter {
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.PebConverter__label {
+  display: block;
+  font-size: 14px;
+}
+
+.PebConverter__inputWrapper {
+  margin: 4px;
+}
+
+.PebConverter__unit {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 6px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
