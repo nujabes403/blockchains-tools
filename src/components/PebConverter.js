@@ -31,7 +31,10 @@ class PebConverter extends Component {
         return fromEvent(this['$' + unitKey], 'input').pipe(
           map(e => {
             if (!e.target.value) return ''
-            return new BigNumber(e.target.value).multipliedBy(10 ** exponent)
+            return {
+              unitKey: unitKey,
+              val: new BigNumber(e.target.value).multipliedBy(10 ** exponent)
+            }
           })
         )
       })
@@ -40,8 +43,9 @@ class PebConverter extends Component {
       takeUntil(this.destroy$)
     )
 
-    unitChangeInPeb$.subscribe((valueAsPeb) => {
+    unitChangeInPeb$.subscribe(({ val: valueAsPeb, unitKey: originUnitKey }) => {
       Object.entries(units).forEach(([unitKey, { exponent }]) => {
+          if (originUnitKey === unitKey) return
           this['$' + unitKey].value = valueAsPeb
             ? valueAsPeb.dividedBy(10 ** exponent).toString(10)
             : ''

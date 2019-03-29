@@ -25,13 +25,16 @@ class WeiConverter extends Component {
   componentWillUnmount() {
     this.destroy$.next(true)
   }
-
+  
   initInputChangeStreams = () => {
     const unitObservables = Object.entries(units).map(([unitKey, { exponent }]) => {
         return fromEvent(this['$' + unitKey], 'input').pipe(
           map(e => {
             if (!e.target.value) return ''
-            return new BigNumber(e.target.value).multipliedBy(10 ** exponent)
+            return {
+              unitKey: unitKey,
+              val: new BigNumber(e.target.value).multipliedBy(10 ** exponent)
+            }
           })
         )
       })
@@ -40,8 +43,9 @@ class WeiConverter extends Component {
       takeUntil(this.destroy$)
     )
 
-    unitChangeInWei$.subscribe((valueAsWei) => {
+    unitChangeInWei$.subscribe(({ val: valueAsWei, unitKey: originUnitKey }) => {
       Object.entries(units).forEach(([unitKey, { exponent }]) => {
+          if (originUnitKey === unitKey) return
           this['$' + unitKey].value = valueAsWei
             ? valueAsWei.dividedBy(10 ** exponent).toString(10)
             : ''
