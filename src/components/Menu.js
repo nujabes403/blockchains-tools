@@ -28,7 +28,7 @@ class Menu extends Component<Props> {
     
     mixpanel.track(
       "Visited book label",
-      { "bookLabel": activeBookLabel },
+      { "bookLabel": this.state.activeBookLabel },
     )
   }
 
