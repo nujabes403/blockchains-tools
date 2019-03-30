@@ -13,13 +13,30 @@ type Props = {
 }
 
 class Menu extends Component<Props> {
-  state = {
-    activeBookLabel: queryString.parse(window.location.search) 
-      && queryString.parse(window.location.search).l 
-      || 'GENERAL' // default
+  constructor() {
+    super()
+    this.state = {
+      activeBookLabel: queryString.parse(window.location.search) 
+        && queryString.parse(window.location.search).l 
+        || 'GENERAL' // default
+    }
+    
+    mixpanel.track(
+      "Visited menu item",
+      { "menu": window.location.pathname + window.location.search },
+    )
+    
+    mixpanel.track(
+      "Visited book label",
+      { "bookLabel": activeBookLabel },
+    )
   }
 
   handleBookLabel = (bookLabel) => {
+    mixpanel.track(
+      "Clicked book label",
+      { "bookLabel": bookLabel },
+    )
     this.setState({
       activeBookLabel: bookLabel,
     })
@@ -39,6 +56,10 @@ class Menu extends Component<Props> {
           <Link
             key={title}
             to={link}
+            onClick={() => mixpanel.track(
+              "Clicked menu item",
+              { "menu": link },
+            )}
             className="Menu__item"
           >
             {title}
