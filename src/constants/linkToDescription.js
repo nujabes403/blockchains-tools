@@ -80,6 +80,10 @@ const linkToDescription = {
     title: 'HUMAN-READABLE ADDRESS',
     markdown: UTF8Markdown,
   },
+  '/klayRawTransactionDecoder': {
+    title: 'RAW TX DECODER',
+    markdown: RawTransactionDecoderMarkdown,
+  },
 }
 
 export default linkToDescription

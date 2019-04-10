@@ -23,6 +23,7 @@
   "dependencies": {
     "bignumber.js": "^8.0.2",
     "bs58": "^4.0.1",
+    "caver-js": "0.0.2-r",
     "classnames": "^2.2.5",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",

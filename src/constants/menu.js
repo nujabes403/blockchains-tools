@@ -22,6 +22,7 @@ export const menuItems = {
     { title: 'HUMAN-READABLE ADDRESS', link: '/humanreadableAddress?l=KLAY' },
     { title: 'PRIVATEKEY TO ADDRESS', link: '/key?l=KLAY' },
     { title: 'KECCAK256', link: '/keccak256?l=KLAY' },
+    { title: 'RAW TRANSACTION DECODER', link: '/klayRawTransactionDecoder?l=KLAY' },
   ]
 }
 
