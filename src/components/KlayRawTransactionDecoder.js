@@ -54,34 +54,40 @@ class KlayRawTransactionDecoder extends Component<Props> {
   }
   
   processTxValue = (key, value) => {
-    const rawHexShowList = [
-      'txType', 
-      'from', 
-      'to', 
-      'feePayer', 
-      'signature', 
-      'signatures', 
-      'v', 
-      'r', 
-      's', 
-      'data', 
-      'humanReadable', 
-      'senderSignature', 
-      'feePayerSignature', 
-      'accountKey'
-    ]
     
-    const humanReadableCandidateList = ['from', 'to', 'feePayer']
-    
-    value = (humanReadableCandidateList.indexOf(key) !== -1 && fromHex(value) !== '')
-    ? `${value} (${fromHex(value)})`
-    : value
-    
-    const shouldShowAsRawHex = rawHexShowList.indexOf(key) !== -1
-    
-    return shouldShowAsRawHex 
-      ? value 
-      : new BigNumber(value === '0x' ? 0 : value).toString(10) + ` (${value})`
+    try {
+      const rawHexShowList = [
+        'txType', 
+        'from', 
+        'to', 
+        'feePayer', 
+        'signature', 
+        'signatures', 
+        'v', 
+        'r', 
+        's', 
+        'data', 
+        'humanReadable', 
+        'senderSignature', 
+        'feePayerSignature', 
+        'accountKey'
+      ]
+      
+      const humanReadableCandidateList = ['from', 'to', 'feePayer']
+      
+      value = (humanReadableCandidateList.indexOf(key) !== -1 && fromHex(value) !== '')
+      ? `${value} (${fromHex(value)})`
+      : value
+      
+      const shouldShowAsRawHex = rawHexShowList.indexOf(key) !== -1
+      
+      return shouldShowAsRawHex 
+        ? value 
+        : new BigNumber(value === '0x' ? 0 : value).toString(10) + ` (${value})`
+    } catch (e) {
+      console.log(e)
+      return ''
+    }
   }
 
   render() {
