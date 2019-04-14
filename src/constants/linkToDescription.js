@@ -84,6 +84,10 @@ const linkToDescription = {
     title: 'RAW TX DECODER',
     markdown: RawTransactionDecoderMarkdown,
   },
+  '/feeDelegate': {
+    title: 'FEE DELEGATE',
+    markdown: RawTransactionDecoderMarkdown,
+  },
 }
 
 export default linkToDescription

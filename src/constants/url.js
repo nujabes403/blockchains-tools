@@ -1,0 +1,1 @@
+export const feeDelegateLambdaURL = 'https://brq3fas44k.execute-api.us-east-1.amazonaws.com/dev/feeDelegate'

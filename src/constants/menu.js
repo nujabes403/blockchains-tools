@@ -23,6 +23,7 @@ export const menuItems = {
     { title: 'PRIVATEKEY TO ADDRESS', link: '/key?l=KLAY' },
     { title: 'KECCAK256', link: '/keccak256?l=KLAY' },
     { title: 'RAW TRANSACTION DECODER', link: '/klayRawTransactionDecoder?l=KLAY' },
+    { title: '(EXPERIMENTAL) FEE DELEGATE', link: '/feeDelegate?l=KLAY' },
   ]
 }
 

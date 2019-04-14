@@ -1,0 +1,45 @@
+.FeeDelegate {
+  padding-bottom: 100px;
+}
+
+.FeeDelegate__receipt {
+  font-size: 12px;
+  word-break: break-all;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+.FeeDelegate__error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.FeeDelegate__receiptHeader {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.FeeDelegate__loading {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.FeeDelegate__genButton, .FeeDelegate__requestButton {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.FeeDelegate__notice {
+  margin-bottom: 4px;
+}
+
+.FeeDelegate__scopeLink {
+  color: #6A8DDA;
+  text-decoration: underline;
+}

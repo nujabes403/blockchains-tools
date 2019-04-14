@@ -22,6 +22,7 @@ import WeiConverter from 'components/WeiConverter'
 import PebConverter from 'components/PebConverter'
 import HumanreadableAddress from 'components/HumanreadableAddress'
 import KlayRawTransactionDecoder from 'components/KlayRawTransactionDecoder'
+import FeeDelegate from 'components/FeeDelegate'
 
 window.isMobile = isMobile
 
@@ -66,6 +67,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/pebConverter" component={PebConverter} />
       <Route path="/humanreadableAddress" component={HumanreadableAddress} />
       <Route path="/klayRawTransactionDecoder" component={KlayRawTransactionDecoder} />
+      <Route path="/feeDelegate" component={FeeDelegate} />
     </Route>
   </Router>
 )

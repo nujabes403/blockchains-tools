@@ -92,11 +92,12 @@ class KlayRawTransactionDecoder extends Component<Props> {
 
   render() {
     const { result } = this.state
+    const { title } = this.props
 
     return (
       <div className="KlayRawTransactionDecoder">
         <div className="KlayRawTransactionDecoder__inputWrapper">
-          <label className="KlayRawTransactionDecoder__label">Raw Tx:</label>
+          <label className="KlayRawTransactionDecoder__label">{title || 'Raw Tx:'}</label>
           <textarea
             className="KlayRawTransactionDecoder__rawTxInput"
             ref={($rawTransactionHex) => this.$rawTransactionHex = $rawTransactionHex}
