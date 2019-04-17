@@ -21,6 +21,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
     focused: '',
     changeTarget: {},
     removeTarget: {},
+    isForEmjay: false,
   }
 
   subscriptions = []
@@ -45,9 +46,10 @@ class PrivateKeyToPublicKey extends Component<Props> {
       privateKeyChange$.pipe(
         map(pvkey => {
           try {
-            const publicKeyInstance = ec.keyFromPrivate(pvkey).getPublic()
-            const publicKey = '0x' + publicKeyInstance.getX().toString(16) + publicKeyInstance.getY().toString(16)
-            return publicKey
+            const uncompressedFormPublicKey = '0x' + ec.keyFromPrivate(pvkey.replace('0x', ''), 'hex').getPublic(false, 'hex')
+            const publicKey = '0x' + uncompressedFormPublicKey.replace('0x', '').slice(2)
+            
+            return this.state.isForEmjay ? uncompressedFormPublicKey : publicKey
           } catch (e) {
             console.log(e, 'e')
             return ''
@@ -65,9 +67,10 @@ class PrivateKeyToPublicKey extends Component<Props> {
       publicKeyChange$.subscribe(pbkeyRaw => {
           if (this.$publicKey.value !== pbkeyRaw) this.$publicKey.value = pbkeyRaw
           const pbkey = pbkeyRaw.startsWith('0x') ? pbkeyRaw : '0x' + pbkeyRaw
+          
           this.setState({
             publicAddress: pbkey !== '0x'
-              ? '0x' + keccak256(pbkey).toString('hex').slice(-40)
+              ? '0x' + keccak256(pbkey.replace('0x04', '0x')).toString('hex').slice(-40)
               : ''
           })
         })
@@ -144,6 +147,23 @@ class PrivateKeyToPublicKey extends Component<Props> {
     const generatedPrivateKey = '0x' + ec.genKeyPair().getPrivate().toString(16)
     this.privateKeySubject.next(generatedPrivateKey)
   }
+  
+  handleCheck = () => {
+    this.setState({ isForEmjay: !this.state.isForEmjay }, () => {
+      const uncompressedFormIndicator = '0x04'
+      
+      const isAlreadyForEmjay = this.$publicKey.value.slice(0, 4) === uncompressedFormIndicator
+      
+      if (this.state.isForEmjay && !isAlreadyForEmjay) {
+        this.$publicKey.value = uncompressedFormIndicator + this.$publicKey.value.slice(2)
+        return
+      }
+    
+      this.$publicKey.value = isAlreadyForEmjay
+        ? '0x' + this.$publicKey.value.slice(4)
+        : this.$publicKey.value
+    })
+  }
 
   componentDidMount() {
     this.initInputChangeStreams()
@@ -156,7 +176,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
   }
 
   render() {
-    const { publicAddress, changeTarget, removeTarget } = this.state
+    const { publicAddress, changeTarget, removeTarget, isForEmjay } = this.state
     return (
       <div className="PrivateKeyToPublicKey">
         <button onClick={this.genPrivateKey}>Generate!</button>
@@ -173,6 +193,14 @@ class PrivateKeyToPublicKey extends Component<Props> {
         <ArrowDown visible={changeTarget.publicKey} />
         <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--publicKey">
           <label className="PrivateKeyToPublicKey__label">Public key:</label>
+          <label>
+            <input
+              type="checkbox"
+              checked={isForEmjay}
+              onChange={this.handleCheck}
+            />
+            Show uncompressed / compressed indicator
+          </label>
           <textarea
             className={cx('PrivateKeyToPublicKey__publicKey', {
               'PrivateKeyToPublicKey__publicKey--changeTarget': changeTarget.publicKey
