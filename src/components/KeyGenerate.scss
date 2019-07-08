@@ -1,0 +1,72 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.KeyGenerate {
+  @include mobile {
+    width: 100%
+  }
+  width: 500px;
+  margin: 0 auto;
+}
+
+.KeyGenerate__label {
+  display: block;
+  font-size: 14px;
+}
+
+.KeyGenerate__inputWrapper {
+  margin: 4px;
+}
+
+.KeyGenerate__privateKey,
+.KeyGenerate__publicKey,
+.KeyGenerate__publicAddress {
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #eeeeee;
+  border-radius: 3px;
+  transition: border-color 300ms;
+}
+
+.KeyGenerate__privateKey {
+  display: block;
+  width: 100%;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+
+  &--removeTarget {
+    border: 2px solid $key-remove;
+  }
+}
+
+.KeyGenerate__publicKey {
+  display: block;
+  width: 100%;
+  height: 70px;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.KeyGenerate__publicAddress {
+  display: block;
+  width: 100%;
+  cursor: default;
+  &--changeTarget {
+    border: 2px solid $key-change;
+  }
+}
+
+.KeyGenerate__arrow {
+  transition: opacity 300ms;
+  opacity: 0;
+  width: 10px;
+  height: 10px;
+  display: block;
+  margin: 10px auto;
+
+  &--visible {
+    opacity: 1;
+  }
+}

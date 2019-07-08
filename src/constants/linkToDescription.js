@@ -88,6 +88,10 @@ const linkToDescription = {
     title: 'FEE DELEGATE',
     markdown: RawTransactionDecoderMarkdown,
   },
+  '/keygenerate': {
+    title: 'KEY GENERATE',
+    markdown: PrivateKeyToAddressMarkdown,
+  },
 }
 
 export default linkToDescription

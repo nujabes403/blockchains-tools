@@ -7,6 +7,7 @@ const colors = {
   GENERAL: '#61c19e',
   ETH: '#737474',
   KLAY: '#3570D8',
+  IOST: '#2A3238',
 }
 
 const BookLabel = ({ title, style, active, onClick }) => (

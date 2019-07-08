@@ -58,6 +58,15 @@
     }
     background-color: $label-klay;
   }
+  
+  &--IOST {
+    @include mobile {
+      background-color: $white;
+      border-bottom: 1px solid $label-iost;
+      color: $label-iost;
+    }
+    background-color: $label-iost;
+  }
 }
 
 .MobileMenu__itemList {
@@ -85,6 +94,10 @@
 
   &--KLAY {
     background-color: $label-klay;
+  }
+  
+  &--IOST {
+    background-color: $label-iost;
   }
 }
 

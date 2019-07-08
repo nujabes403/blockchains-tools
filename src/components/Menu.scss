@@ -38,6 +38,15 @@
       text-indent: 18px;
     }
   }
+  
+  &--IOST {
+    background-color: $label-iost;
+    .Menu__item:hover {
+      background-color: $white;
+      color: $label-iost;
+      text-indent: 18px;
+    }
+  }
 }
 
 .Menu__title {

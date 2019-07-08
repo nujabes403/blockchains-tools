@@ -19,12 +19,13 @@ export const menuItems = {
   ],
   'KLAY': [
     { title: 'PEB CONVERTER', link: '/pebConverter?l=KLAY' },
-    { title: 'HUMAN-READABLE ADDRESS', link: '/humanreadableAddress?l=KLAY' },
     { title: 'PRIVATEKEY TO ADDRESS', link: '/key?l=KLAY' },
     { title: 'KECCAK256', link: '/keccak256?l=KLAY' },
     { title: 'RAW TRANSACTION DECODER', link: '/klayRawTransactionDecoder?l=KLAY' },
-    { title: '(EXPERIMENTAL) FEE DELEGATE', link: '/feeDelegate?l=KLAY' },
-  ]
+  ],
+  'IOST': [
+    { title: 'KEY GENERATE', link: '/keygenerate?l=IOST' },
+  ],
 }
 
-export const bookLabels = ['GENERAL', 'ETH', 'KLAY']
+export const bookLabels = ['GENERAL', 'ETH', 'KLAY', 'IOST']
