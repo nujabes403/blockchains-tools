@@ -14,6 +14,7 @@ import WeiConverterMarkdown from 'templates/WeiConverter.md'
 import RawTransactionEncoderMarkdown from 'templates/RawTransactionEncoder.md'
 import RawTransactionDecoderMarkdown from 'templates/RawTransactionDecoder.md'
 import PebConverterMarkdown from 'templates/PebConverter.md'
+import KeyGenerateMarkdown from 'templates/KeyGenerate.md'
 
 const linkToDescription = {
   '/': {
@@ -90,7 +91,7 @@ const linkToDescription = {
   },
   '/keygenerate': {
     title: 'KEY GENERATE',
-    markdown: PrivateKeyToAddressMarkdown,
+    markdown: KeyGenerateMarkdown,
   },
 }
 
