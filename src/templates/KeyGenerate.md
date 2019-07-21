@@ -1,15 +1,13 @@
-This tool provides following features.  
+This tool provides following feature.  
 1. Get a IOST public key from IOST private key.  
 <br />
 
 Business Logic:  
 <span style="color: #618BF7;">
   `const priKeyBytes = base58.decode(pvkey)`  
-  
   `const kp = nacl.sign.keyPair.fromSeed(priKeyBytes.slice(0, 32))`  
   `const seckey = Buffer.from(kp.secretKey.buffer)`  
   `const pubkey = seckey.slice(seckey.length / 2)`  
-  
   `return base58.encode(pubkey)`
 </span>  
 
