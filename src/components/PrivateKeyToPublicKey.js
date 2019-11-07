@@ -179,7 +179,7 @@ class PrivateKeyToPublicKey extends Component<Props> {
     const { publicAddress, changeTarget, removeTarget, isForEmjay } = this.state
     return (
       <div className="PrivateKeyToPublicKey">
-        <button onClick={this.genPrivateKey}>Generate!</button>
+        <button className="PrivateKeyToPublicKey__generateButton" onClick={this.genPrivateKey}>Generate!</button>
         <div className="PrivateKeyToPublicKey__inputWrapper PrivateKeyToPublicKey__inputWrapper--privateKey">
           <label className="PrivateKeyToPublicKey__label">Private key:</label>
           <input

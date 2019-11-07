@@ -155,7 +155,7 @@ class KeyGenerate extends Component<Props> {
     const { changeTarget, removeTarget } = this.state
     return (
       <div className="KeyGenerate">
-        <button onClick={this.genPrivateKey}>Generate!</button>
+        <button className="KeyGenerate__generateButton" onClick={this.genPrivateKey}>Generate!</button>
         <div className="KeyGenerate__inputWrapper KeyGenerate__inputWrapper--privateKey">
           <label className="KeyGenerate__label">Private key:</label>
           <input
