@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react'
+import { browserHistory } from 'react-router'
 import { Subject } from 'rxjs'
 import { takeUntil, tap } from 'rxjs/operators'
 
@@ -19,7 +20,12 @@ class Header extends Component<Props> {
     return (
       <div className="Header">
         <div className="Header__left">
-          <span className="Header__title">Blockchains Tools</span>
+          <span 
+            className="Header__title"
+            onClick={() => browserHistory.push('/')}
+          >
+            Blockchains Tools
+          </span>
         </div>
       </div>
     )
