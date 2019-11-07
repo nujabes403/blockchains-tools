@@ -4,6 +4,10 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 const isMobile = require('ismobilejs')
 
 import App from './App'
+import Mainpage from 'pages/Mainpage'
+
+import Landing from 'components/Landing'
+
 import Introduction from 'components/Introduction'
 import RLP from 'components/RLP'
 import PrivateKeyToPublicKey from 'components/PrivateKeyToPublicKey'
@@ -51,7 +55,7 @@ console.info(`%cYou can use following libraries in this console..
 export const renderRoutes = (rootComponent) => (
   <Router history={history}>
     <Route path="/" component={rootComponent}>
-      <IndexRoute component={Introduction} />
+      <IndexRoute component={Landing} />
       <Route path="/rlp" component={RLP} />
       <Route path="/key" component={PrivateKeyToPublicKey} />
       <Route path="/bignumber" component={BigNumberToHex} />

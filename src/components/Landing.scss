@@ -1,0 +1,41 @@
+.Landing {
+  width: 720px;
+  display: block;
+  margin: 0 auto;
+}
+
+.Landing__header {
+  position: relative;
+  display: block;
+  height: 120px;
+}
+
+.Landing__logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  margin-bottom: 6px;
+}
+
+.Landing__title {
+  @include font-style('font-1-28');
+  display: block;
+  font-weight: bold;
+  color: #333333;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.Landing__description {
+  @include font-style('font-1-16');
+  line-height: 24px;
+  color: #666666;
+  
+  a {
+    color: #81C4A7;
+  }
+}

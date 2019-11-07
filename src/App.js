@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, createRef } from 'react'
 import cx from 'classnames'
+
+import Mainpage from 'pages/Mainpage'
 
 import Header from 'components/Header'
 import SectionDescription from 'components/SectionDescription'
@@ -15,6 +17,8 @@ type Props = {
 }
 
 class App extends Component<Props> {
+  $app = createRef()
+  
   state = {
     isLoading: true,
   }
@@ -23,25 +27,39 @@ class App extends Component<Props> {
     const { children, location } = this.props
 
     return (
-      <Fragment>
-        <Modal />
-        <div className="App">
-          <div className={cx('App__section', {
-            'App__section--introduction': location.pathname === '/',
-          })}
-          >
-            <SectionDescription
-              hasModal={location.pathname !== '/'}
-              pathname={location.pathname}
-              className="App__sectionDescription"
-            />
-            {children}
+      <div ref={this.$app} className="App">
+        <Mainpage children={children} />
+        {/*
+          <div className="App__link">
+            <a target="blank" href="https://t.me/jetstreamworld">
+            <img src="/static/images/telegram.png" />
+            </a>
           </div>
-          <MobileMenu className="App__menu hide-desktop" />
-          <Menu className="App__menu hide-mobile" />
-        </div>
-      </Fragment>
+        */}
+      </div>
     )
+
+    // return (
+    //   <Fragment>
+    //     <Modal />
+    //     <div className="App">
+    //       <Header className="App__header" />
+    //       <Menu className="App__menu hide-mobile" />
+    //       <MobileMenu className="App__menu hide-desktop" />
+    //       <div className={cx('App__section', {
+    //         'App__section--introduction': location.pathname === '/',
+    //       })}
+    //       >
+    //         <SectionDescription
+    //           hasModal={location.pathname !== '/'}
+    //           pathname={location.pathname}
+    //           className="App__sectionDescription"
+    //         />
+    //         {children}
+    //       </div>
+    //     </div>
+    //   </Fragment>
+    // )
   }
 }
 

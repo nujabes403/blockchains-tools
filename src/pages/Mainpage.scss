@@ -1,0 +1,32 @@
+.Mainpage {
+  display: block;
+  margin: 0 auto;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Mainpage__header {
+  height: 80px;
+  background-color: $white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+.Mainpage__side {
+  display: inline-block;
+  vertical-align: top;
+  width: 288px;
+  height: calc(100% - 80px);
+  overflow: hidden;
+}
+
+.Mainpage__view {
+  max-width: 1024px;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 288px);
+  height: calc(100% - 80px);
+  padding: 64px 56px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+  // max-width: 768px;
+}
