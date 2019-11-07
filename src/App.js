@@ -29,37 +29,8 @@ class App extends Component<Props> {
     return (
       <div ref={this.$app} className="App">
         <Mainpage children={children} />
-        {/*
-          <div className="App__link">
-            <a target="blank" href="https://t.me/jetstreamworld">
-            <img src="/static/images/telegram.png" />
-            </a>
-          </div>
-        */}
       </div>
     )
-
-    // return (
-    //   <Fragment>
-    //     <Modal />
-    //     <div className="App">
-    //       <Header className="App__header" />
-    //       <Menu className="App__menu hide-mobile" />
-    //       <MobileMenu className="App__menu hide-desktop" />
-    //       <div className={cx('App__section', {
-    //         'App__section--introduction': location.pathname === '/',
-    //       })}
-    //       >
-    //         <SectionDescription
-    //           hasModal={location.pathname !== '/'}
-    //           pathname={location.pathname}
-    //           className="App__sectionDescription"
-    //         />
-    //         {children}
-    //       </div>
-    //     </div>
-    //   </Fragment>
-    // )
   }
 }
 
