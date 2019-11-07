@@ -5,8 +5,6 @@ import Mainpage from 'pages/Mainpage'
 
 import Header from 'components/Header'
 import SectionDescription from 'components/SectionDescription'
-import Menu from 'components/Menu'
-import MobileMenu from 'components/MobileMenu'
 import Modal from 'components/Modal'
 
 import './App.scss'

@@ -23,6 +23,8 @@ class Sidebar extends Component<Props> {
   render() {
     const { query, pathname } = browserHistory.getCurrentLocation()
     
+    const isLandingPage = query && !query.l
+    
     const selectedItem = {
       link: pathname,
       pathnameOnly: String(pathname).split('?')[0],
@@ -33,7 +35,7 @@ class Sidebar extends Component<Props> {
       <div className="Sidebar">
         <div 
           className={cx('Sidebar__label', {
-            'Sidebar__label--selected': query && !query.l,
+            'Sidebar__label--selected': isLandingPage,
           })}
           onClick={() => browserHistory.push('/')}
         >
@@ -41,7 +43,9 @@ class Sidebar extends Component<Props> {
         </div>
         {menuItems && Object.entries(menuItems).map(([bookLabel, items]) => {
           
-          const isBookLabelSelected = selectedItem.label && (selectedItem.label === bookLabel)
+          const isBookLabelSelected = isLandingPage 
+            ? bookLabel === 'GENERAL' // Show GENERAL menus if it's in landing page. 
+            : selectedItem.label && (selectedItem.label === bookLabel)
           
           return (
             <Fragment>
