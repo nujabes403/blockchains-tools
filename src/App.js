@@ -28,6 +28,7 @@ class App extends Component<Props> {
 
     return (
       <div ref={this.$app} className="App">
+        <Modal />
         <Mainpage children={children} />
       </div>
     )

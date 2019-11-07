@@ -4,35 +4,26 @@
   font-weight: bold;
   text-align: left;
   position: relative;
+  margin-bottom: 56px;
 }
 
 .SectionDescription__title {
   @include font-style('font-1-28');
+  line-height: 20px;
   font-weight: bold;
-  margin-bottom: 56px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .SectionDescription__questionMark {
-  @include mobile {
-    font-size: 28px;
-    position: static;
-    margin-left: 30px;
-    width: 40px;
-  }
-  @include desktop {
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    right: 0;
-    font-size: 40px;
-    width: 50px;
-  }
+  margin-left: 10px;
+  width: 28px;
+  line-height: 20px;
   display: inline-block;
   vertical-align: middle;
   color: rgba($black, .3);
   padding: 0;
   cursor: pointer;
-  z-index: 9;
 
   &:hover {
     color: rgba($black, .6);

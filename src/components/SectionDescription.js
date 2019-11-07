@@ -21,7 +21,7 @@ class SectionDescription extends Component<Props> {
       <div className={cx('SectionDescription', className, {
         'SectionDescription--introduction': pathname === '/',
       })}>
-        <header className="SectionDescription__title">{linkToDescription[pathname].title}</header>
+        <span className="SectionDescription__title">{linkToDescription[pathname].title}</span>
         {hasModal && (
           <img
             src="/static/images/question.png"
