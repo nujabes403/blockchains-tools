@@ -60,6 +60,18 @@ module.exports = {
                 includePaths: [path.resolve(__dirname, 'src/styles')],
               },
             },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                // Or array of paths
+                resources: [
+                  './src/styles/_colors.scss',
+                  './src/styles/_mixins.scss',
+                  './src/styles/_common.scss',
+                  './src/styles/_fonts.scss',
+                ]
+              },
+            },
           ],
         }),
       },
