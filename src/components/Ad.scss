@@ -1,0 +1,42 @@
+.Ad {
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 6.7px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fcfcfc;
+  animation: clickable 3000ms;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+  transition: opacity 300ms, border-color 200ms;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.Ad__description {
+  @include font-style('font-1-16');
+  font-weight: bold;
+  line-height: 22px;
+  color: #4d494a;
+}
+
+.Ad__image {
+  margin-top: 12px;
+  width: 131px;
+  height: 24px;
+  display: block;
+}
+
+@keyframes clickable {
+  0% {
+    transform: scale(.97);
+  }
+  
+  100% {
+    transform: scale(1);
+  }
+}
