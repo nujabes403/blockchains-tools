@@ -1,6 +1,37 @@
-@import "fonts.scss";
-@import "colors.scss";
-
 .Header {
-  
+  max-width: 1280px;
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.Header__left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 40px;
+}
+
+.Header__title {
+  @include font-style('font-1-24');
+  font-weight: 900;
+  color: #404040;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Header__version {
+  @include font-style('font-1-18');
+  font-weight: bold;
+  margin-left: 12px;
+  color: #999999;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Header__right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 40px;
 }

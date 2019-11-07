@@ -1,18 +1,26 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router'
-import cx from 'classnames'
+import React, { Component, createRef } from 'react'
+import { Subject } from 'rxjs'
+import { takeUntil, tap } from 'rxjs/operators'
 
 import './Header.scss'
 
-class Header extends Component<Props> {
-  state = {}
+type Props = {
+  
+}
 
-  componentDidMount() {}
+class Header extends Component<Props> {
+  destroy$ = new Subject()
+
+  componentWillUnmount() {
+    this.destroy$.next(true)
+  }
 
   render() {
     return (
       <div className="Header">
-        Header
+        <div className="Header__left">
+          <span className="Header__title">Blockchains Tools</span>
+        </div>
       </div>
     )
   }
