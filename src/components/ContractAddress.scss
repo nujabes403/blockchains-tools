@@ -5,13 +5,11 @@
   @include mobile {
     width: 100%
   }
-  width: 350px;
-  margin: 0 auto;
+  width: 700px;
 }
 
 .ContractAddress__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .ContractAddress__inputWrapper {
@@ -22,10 +20,7 @@
 .ContractAddress__sender,
 .ContractAddress__nonce,
 .ContractAddress__contractAddress {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

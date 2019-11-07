@@ -5,13 +5,11 @@
   @include mobile {
     width: 100%;
   }
-  width: 500px;
-  margin: 0 auto;
+  width: 700px;
 }
 
 .Ed25519__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .Ed25519__inputWrapper {
@@ -20,10 +18,7 @@
 
 .Ed25519__privateKey,
 .Ed25519__publicKey {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

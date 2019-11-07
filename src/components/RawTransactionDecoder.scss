@@ -9,8 +9,7 @@
 }
 
 .RawTransactionDecoder__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .RawTransactionDecoder__inputWrapper {
@@ -19,10 +18,7 @@
 
 .RawTransactionDecoder__rawTxInput,
 .RawTransactionDecoder__decodedOutput {
-  font-size: 16px;
-  padding: 6px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

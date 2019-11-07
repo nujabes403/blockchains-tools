@@ -1,8 +1,82 @@
-@import 'colors.scss';
-
 @mixin font-style($type) {
-  @if $type == 'h1' { font-size: 32px; font-weight: bold; }
-  @else if $type == 'h2' { font-size: 20px; font-weight: bold; }
-  @else if $type == 'button' { font-size: 14px; font-weight: bold; }
-  @else if $type == 'body' { font-size: 14px; font-weight: normal; }
+  
+  @if $type == 'font-1-9' {
+    font-size: 9px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-10' {
+    font-size: 10px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-11' {
+    font-size: 11px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-16' {
+    font-size: 16px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-18' {
+    font-size: 18px;
+    font-family: 'AppleSDGothicNeo';
+  }
+
+  @else if $type == 'font-1-22' {
+    font-size: 22px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-24' {
+    font-size: 24px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-28' {
+    font-size: 28px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-40' {
+    font-size: 40px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-20' {
+    font-size: 20px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-14' {
+    font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-13' {
+    font-size: 13px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-12' {
+    font-size: 12px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-60' {
+    font-size: 60px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-72' {
+    font-size: 72px;
+    font-family: 'AppleSDGothicNeo';
+  }
+  
+  @else if $type == 'font-1-48' {
+    font-size: 48px;
+    font-family: 'AppleSDGothicNeo';
+  }
 }

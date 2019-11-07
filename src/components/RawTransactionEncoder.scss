@@ -9,8 +9,7 @@
 }
 
 .RawTransactionEncoder__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .RawTransactionEncoder__inputWrapper {
@@ -28,10 +27,7 @@
 
 .RawTransactionEncoder__txParameter,
 .RawTransactionEncoder__rawTransaction {
-  font-size: 16px;
-  padding: 6px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

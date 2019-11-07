@@ -8,8 +8,7 @@
 }
 
 .WeiConverter__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .WeiConverter__inputWrapper {
@@ -17,11 +16,8 @@
 }
 
 .WeiConverter__unit {
-  display: block;
+  @include input-main;
   width: 100%;
-  font-size: 16px;
-  padding: 6px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  height: 28px;
   transition: border-color 300ms;
 }

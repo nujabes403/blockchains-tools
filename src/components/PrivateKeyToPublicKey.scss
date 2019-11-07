@@ -5,13 +5,11 @@
   @include mobile {
     width: 100%
   }
-  width: 500px;
-  margin: 0 auto;
+  width: 700px;
 }
 
 .PrivateKeyToPublicKey__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .PrivateKeyToPublicKey__inputWrapper {
@@ -21,10 +19,7 @@
 .PrivateKeyToPublicKey__privateKey,
 .PrivateKeyToPublicKey__publicKey,
 .PrivateKeyToPublicKey__publicAddress {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 
@@ -69,4 +64,8 @@
   &--visible {
     opacity: 1;
   }
+}
+
+.PrivateKeyToPublicKey__generateButton {
+  @include button-main;
 }

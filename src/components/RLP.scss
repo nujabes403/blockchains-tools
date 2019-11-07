@@ -6,12 +6,10 @@
     width: 100%;
   }
   width: 700px;
-  margin: 0 auto;
 }
 
 .RLP__label {
-  display: block;
-  font-size: 14px;
+  @include label-main;
 }
 
 .RLP__inputWrapper {
@@ -21,10 +19,7 @@
 
 .RLP__decoded,
 .RLP__encoded {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

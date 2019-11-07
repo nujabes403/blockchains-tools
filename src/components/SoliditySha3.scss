@@ -5,8 +5,7 @@
   @include mobile {
     width: 100%;
   }
-  width: 500px;
-  margin: 0 auto;
+  width: 700px;
 }
 
 .SoliditySha3__typeLabel {
@@ -16,9 +15,8 @@
 }
 
 .SoliditySha3__label {
+  @include label-main;
   margin: 6px 0;
-  display: block;
-  font-size: 14px;
 }
 
 .SoliditySha3__inputWrapper {
@@ -27,10 +25,7 @@
 
 .SoliditySha3__soliditySha3Input,
 .SoliditySha3__soliditySha3Output {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #eeeeee;
-  border-radius: 3px;
+  @include input-main;
   transition: border-color 300ms;
 }
 

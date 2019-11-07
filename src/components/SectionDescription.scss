@@ -1,44 +1,15 @@
-@import "colors.scss";
-@import "mixins.scss";
-
 .SectionDescription {
-  @include mobile {
-    text-align: left;
-  }
-  font-family: 'Lato';
+  @include font-style('font-1-28');
+  width: 700px;
+  font-weight: bold;
+  text-align: left;
   position: relative;
-  text-align: center;
-  font-size: 40px;
-  padding: 6px;
-  background-color: rgba($white, .85);
-
-  &--introduction {
-    @include mobile {
-      .SectionDescription__title {
-        display: block;
-        font-size: 20px;
-        font-family: 'Montserrat';
-        font-weight: bold;
-        text-align: center;
-      }
-    }
-  }
 }
 
 .SectionDescription__title {
-  @include mobile {
-    font-size: 16px;
-    text-align: left;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  color: #333;
-  font-family: 'Days One';
-  letter-spacing: -1px;
-  text-shadow: -2px -1px 1px #fff, 1px 2px 2px rgba(0, 0, 0, 0.2);
-  font-weight: 300;
-  font-size: 36px;
-  margin: 0;
+  @include font-style('font-1-28');
+  font-weight: bold;
+  margin-bottom: 56px;
 }
 
 .SectionDescription__questionMark {
@@ -52,7 +23,7 @@
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
-    right: 70px;
+    right: 0;
     font-size: 40px;
     width: 50px;
   }
