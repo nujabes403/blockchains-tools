@@ -17,10 +17,6 @@ import PebConverterMarkdown from 'templates/PebConverter.md'
 import KeyGenerateMarkdown from 'templates/KeyGenerate.md'
 
 const linkToDescription = {
-  '/': {
-    title: 'Welcome to Blockchain Tools!',
-    markdown: '',
-  },
   '/rlp': {
     title: 'RLP',
     markdown: RLPMarkdown,

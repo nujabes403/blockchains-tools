@@ -1,19 +1,11 @@
 @import "colors.scss";
 
 .Menu {
-  font-family: 'Days One';
-  width: 280px;
+  @include font-style('font-1-18');
+  font-weight: bold;
   min-height: 500px;
-  transform: perspective(1200px);
-  transform-style: preserve-3d;
-  -webkit-transform: perspective(1200px) rotateY(-40deg) !important;
-  -moz-transform: perspective(1200px) rotateY(-40deg) !important;
-  -ms-transform: perspective(1200px) rotateY(-40deg) !important;
-  -o-transform: perspective(1200px) rotateY(-40deg) !important;
-  -moz-transform-origin: -10% 25%;
-  -ms-transform-origin: -10% 25%;
-  -o-transform-origin: -10% 25%;
   transition: background-color 300ms;
+  background-color: #f5f5f5;
 
   &--GENERAL {
     background-color: $label-general;

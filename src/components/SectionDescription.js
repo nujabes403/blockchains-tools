@@ -17,7 +17,7 @@ audio.volume = 0.1
 class SectionDescription extends Component<Props> {
   render() {
     const { className, pathname, hasModal } = this.props
-    return (
+    return !!linkToDescription[pathname] && (
       <div className={cx('SectionDescription', className, {
         'SectionDescription--introduction': pathname === '/',
       })}>
