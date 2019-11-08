@@ -16,11 +16,25 @@ type Props = {
 class Sidebar extends Component<Props> {
   destroy$ = new Subject()
 
+  componentDidMount() {
+    const selectedItem = this.getSelectedItem()
+    
+    mixpanel.track(
+      "Visited menu item",
+      { "menu": window.location.pathname + window.location.search },
+    )
+    
+    mixpanel.track(
+      "Visited book label",
+      { "bookLabel": selectedItem && selectedItem.label },
+    )
+  }
+
   componentWillUnmount() {
     this.destroy$.next(true)
   }
-
-  render() {
+  
+  getSelectedItem = () => {
     const { query, pathname } = browserHistory.getCurrentLocation()
     
     const isLandingPage = query && !query.l
@@ -30,6 +44,16 @@ class Sidebar extends Component<Props> {
       pathnameOnly: String(pathname).split('?')[0],
       label: query && query.l
     }
+    
+    return selectedItem
+  }
+
+  render() {
+    const { query } = browserHistory.getCurrentLocation()
+    
+    const isLandingPage = query && !query.l
+    
+    const selectedItem = this.getSelectedItem()
     
     return (
       <div className="Sidebar">
@@ -54,6 +78,8 @@ class Sidebar extends Component<Props> {
                   'Sidebar__label--selected': isBookLabelSelected,
                 })}
                 onClick={() => {
+                  mixpanel.track("Clicked book label", { "bookLabel": bookLabel })
+                  
                   if (items && items.length !== 0) {
                     browserHistory.push(items[0].link)
                   }
@@ -72,7 +98,10 @@ class Sidebar extends Component<Props> {
                     className={cx('Sidebar__link', {
                       'Sidebar__link--selected': isItemSelected,
                     })}
-                    onClick={() => browserHistory.push(link)}
+                    onClick={() => {
+                      mixpanel.track("Clicked menu item", { "menu": link })
+                      browserHistory.push(link)
+                    }}
                   >
                     {title}
                   </li>

@@ -19,6 +19,7 @@ module.exports = {
   devtool: 'source-map',
   mode: 'production',
   entry: [
+    'whatwg-fetch',
     '@babel/polyfill',
     path.resolve(__dirname, 'src/index.js'),
   ],
@@ -114,6 +115,9 @@ module.exports = {
     extractCSS,
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.NoEmitOnErrorsPlugin(),
+    new CompressionPlugin({
+      filename: '[path]',
+    }),
     new CopyWebpackPlugin([{
       from: 'static',
       to: 'static',
@@ -122,5 +126,6 @@ module.exports = {
     new Dotenv({
       path: envPath,
     }),
+    new CleanWebpackPlugin(['dist']),
   ],
 }

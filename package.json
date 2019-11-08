@@ -45,7 +45,8 @@
     "rxjs": "^6.4.0",
     "sass-resources-loader": "^2.0.1",
     "tweetnacl": "^1.0.1",
-    "web3": "^1.0.0-beta.46"
+    "web3": "^1.0.0-beta.46",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
