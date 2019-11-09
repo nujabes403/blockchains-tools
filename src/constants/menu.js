@@ -22,6 +22,7 @@ export const menuItems = {
     { title: 'PRIVATEKEY TO ADDRESS', link: '/key?l=KLAY' },
     { title: 'KECCAK256', link: '/keccak256?l=KLAY' },
     { title: 'RAW TRANSACTION DECODER', link: '/klayRawTransactionDecoder?l=KLAY' },
+    { title: 'SEND TRANSACTION (JETSTREAM)', link: '/sendTransactionWithJetstream?l=KLAY' },
   ],
   'IOST': [
     { title: 'KEY GENERATE', link: '/keygenerate?l=IOST' },

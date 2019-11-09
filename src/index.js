@@ -26,6 +26,7 @@ import WeiConverter from 'components/WeiConverter'
 import PebConverter from 'components/PebConverter'
 import HumanreadableAddress from 'components/HumanreadableAddress'
 import KlayRawTransactionDecoder from 'components/KlayRawTransactionDecoder'
+import KlaySendTransaction from 'components/KlaySendTransaction'
 import FeeDelegate from 'components/FeeDelegate'
 import KeyGenerate from 'components/KeyGenerate'
 
@@ -72,6 +73,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/pebConverter" component={PebConverter} />
       <Route path="/humanreadableAddress" component={HumanreadableAddress} />
       <Route path="/klayRawTransactionDecoder" component={KlayRawTransactionDecoder} />
+      <Route path="/sendTransactionWithJetstream" component={KlaySendTransaction} />
       <Route path="/feeDelegate" component={FeeDelegate} />
       <Route path="/keygenerate" component={KeyGenerate} />
     </Route>

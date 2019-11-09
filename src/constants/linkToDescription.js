@@ -81,6 +81,10 @@ const linkToDescription = {
     title: 'RAW TX DECODER',
     markdown: RawTransactionDecoderMarkdown,
   },
+  '/sendTransactionWithJetstream': {
+    title: 'SEND TRANSACTION (JETSTREAM)',
+    markdown: RawTransactionDecoderMarkdown,
+  },
   '/feeDelegate': {
     title: 'FEE DELEGATE',
     markdown: RawTransactionDecoderMarkdown,

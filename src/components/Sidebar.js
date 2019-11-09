@@ -72,7 +72,7 @@ class Sidebar extends Component<Props> {
             : selectedItem.label && (selectedItem.label === bookLabel)
           
           return (
-            <Fragment>
+            <Fragment key={bookLabel}>
               <div 
                 className={cx('Sidebar__label', {
                   'Sidebar__label--selected': isBookLabelSelected,
@@ -95,6 +95,7 @@ class Sidebar extends Component<Props> {
                 
                 return (
                   <li 
+                    key={title}
                     className={cx('Sidebar__link', {
                       'Sidebar__link--selected': isItemSelected,
                     })}
