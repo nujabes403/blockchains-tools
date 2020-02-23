@@ -29,6 +29,7 @@ import KlayRawTransactionDecoder from 'components/KlayRawTransactionDecoder'
 import KlaySendTransaction from 'components/KlaySendTransaction'
 import FeeDelegate from 'components/FeeDelegate'
 import KeyGenerate from 'components/KeyGenerate'
+import ExportPrivateKey from 'components/ExportPrivateKey'
 
 window.isMobile = isMobile
 
@@ -76,6 +77,7 @@ export const renderRoutes = (rootComponent) => (
       <Route path="/sendTransactionWithJetstream" component={KlaySendTransaction} />
       <Route path="/feeDelegate" component={FeeDelegate} />
       <Route path="/keygenerate" component={KeyGenerate} />
+      <Route path="/export" component={ExportPrivateKey} />
     </Route>
   </Router>
 )

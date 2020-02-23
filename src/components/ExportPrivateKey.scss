@@ -1,0 +1,35 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.ExportPrivateKey {
+  @include mobile {
+    width: 100%;
+  }
+  width: 700px;
+}
+
+.ExportPrivateKey__label {
+  @include label-main;
+}
+
+.ExportPrivateKey__inputWrapper {
+  margin: 4px;
+  width: 100%;
+}
+
+.ExportPrivateKey__file,
+.ExportPrivateKey__password {
+  @include input-main;
+  line-height: 56px;
+  transition: border-color 300ms;
+}
+
+.ExportPrivateKey__file {
+  display: block;
+  width: 100%;
+}
+
+.ExportPrivateKey__password {
+  display: block;
+  width: 100%;
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="17" viewBox="0 0 108 17">
+    <defs>
+        <linearGradient id="a" x1="73.659%" x2="44.446%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF5C84"/>
+            <stop offset="100%" stop-color="#F5315F"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <text fill="#333" font-family="AppleSDGothicNeo-Heavy, Apple SD Gothic Neo" font-size="16.8" font-weight="600" transform="translate(0 -2)">
+            <tspan x="30.8" y="15">Jetstream</tspan>
+        </text>
+        <path fill="#F73C68" d="M19.802 9.77h-6.777c-.512 0-.952.364-1.047.868l-.38 2.002c-.02.11.064.21.175.21h6.087c.437 0 .838-.247 1.034-.638l1.08-2.163a.193.193 0 0 0-.172-.28"/>
+        <path fill="#FB4B75" d="M22.273 4.955h-8.34c-.511 0-.951.366-1.046.87l-.417 2.211h7.867c.436 0 .835-.247 1.03-.639l1.078-2.162a.193.193 0 0 0-.172-.28"/>
+        <path fill="#FE5981" d="M24.775.14H14.84c-.51 0-.947.364-1.042.867L13.42 3.01c-.02.11.063.211.174.211h9.243c.437 0 .836-.247 1.031-.64L24.947.42a.193.193 0 0 0-.172-.28"/>
+        <path fill="url(#a)" d="M6.326.262L4.452 9.858a1.413 1.413 0 0 1-1.385 1.144H1.271a.323.323 0 0 0-.317.262l-.948 4.853c-.039.2.114.386.317.386H4.22a5.761 5.761 0 0 0 5.648-4.666L12.104.387A.324.324 0 0 0 11.787 0H6.643a.323.323 0 0 0-.317.262" transform="translate(0 .1)"/>
+    </g>
+</svg>

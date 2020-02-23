@@ -46,8 +46,6 @@ class KlaySendTransaction extends Component<Props> {
   }
   
   send = () => {
-    if (!this.bloc.to$.value) return
-    
     this.bloc.sendTransaction()
   }
   
