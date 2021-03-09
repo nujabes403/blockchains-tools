@@ -27,7 +27,7 @@
     "classnames": "^2.2.5",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",
-    "elliptic": "^6.4.1",
+    "elliptic": "^6.5.4",
     "eth-lib": "^0.2.8",
     "html-loader": "^0.5.5",
     "iost": "^0.1.17",
